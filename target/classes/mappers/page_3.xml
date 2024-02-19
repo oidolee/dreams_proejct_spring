@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="pj.mvc.dreams_project2.dao.gamesDAO">  <!-- namespace="패키지명.인터페이스" -->
+	<select id="selectGamesList" resultType="pj.mvc.dreams_project2.dto.gamesDTO">
+		SELECT * FROM DR_Gemes
+	</select>
+</mapper>

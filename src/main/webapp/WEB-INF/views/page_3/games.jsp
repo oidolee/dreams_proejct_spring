@@ -1,12 +1,12 @@
+<%@page import="pj.mvc.dreams_project2.dto.gamesDTO"%>
 <%@ page import="java.text.DateFormat" %>
 <%@ page import="java.text.SimpleDateFormat" %>
 <%@page import="java.util.Calendar"%>
 <%@page import="java.util.Date"%>
-<%@page import="pj.mvc.jsp.dto.gamesDTO"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="/layout/setting.jsp" %>   
+<%@ include file="../layout/setting.jsp" %>   
 <%
 	
 
@@ -19,9 +19,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>경기일정 및 결과</title>
 
-    <link rel="stylesheet" href="${path}/resource/css/common/reset.css">
+    <link rel="stylesheet" href="${path}/resources/css/common/reset.css">
     <!-- Bootstrap css-->
-    <link href="${path}/resource/css/bootstrap/bootstrap.css" rel="stylesheet" />
+    <link href="${path}/resources/css/bootstrap/bootstrap.css" rel="stylesheet" />
 
     <!-- jQuery -->
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
@@ -30,15 +30,15 @@
     
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js" integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous"></script>
-    <script src="${path}/resource/js/common/header.js"></script>
+    <script src="${path}/resources/js/common/header.js"></script>
 
-    <link rel="stylesheet" href="${path}/resource/css/common/common.css">
-    <link rel="stylesheet" href="${path}/resource/css/common/header.css">
-    <link rel="stylesheet" href="${path}/resource/css/common/footer.css">
-    <link rel="stylesheet" href="${path}/resource/page_3/css/games.css">
+    <link rel="stylesheet" href="${path}/resources/css/common/common.css">
+    <link rel="stylesheet" href="${path}/resources/css/common/header.css">
+    <link rel="stylesheet" href="${path}/resources/css/common/footer.css">
+    <link rel="stylesheet" href="${path}/resources/page_3/css/games.css">
     
     <!-- 경기일정 css -->
-    <link rel="stylesheet" href="${path}/resource/page_3/calenderJs/calender.css">
+    <link rel="stylesheet" href="${path}/resources/page_3/calenderJs/calender.css">
     <style>
         .container-box {
             padding: 0;
@@ -106,11 +106,11 @@
 <div class="wrap">
     <body>
       	<!-- header -->
-        <%@include file="/layout/header.jsp"%>
+        <%@include file="../layout/header.jsp"%>
 
         <div class="slider-con">
             <div class="slider-box">
-                <img src="${path}/resource/image/banner/category_STATS.jpg" alt="">
+                <img src="${path}/resources/image/banner/category_STATS.jpg" alt="">
             </div>
         </div>
      		<!-- 상단 중앙1 시작 -->
@@ -161,13 +161,13 @@
                          </div>
                      </div>
                      <!-- 경기일정 js -->
-                     <script src="${path}/resource/page_3/calenderJs/calender.js"></script>
+                     <script src="${path}/resources/page_3/calenderJs/calender.js"></script>
                  </div>
                
          </div>   
             
         <!-- footer -->
-        <%@include file="/layout/footer.jsp"%>
+        <%@include file="../layout/footer.jsp"%>
     </body>
 </div>
 
