@@ -1,0 +1,85 @@
+@charset "UTF-8";
+
+/* 좌측메뉴 시작 */
+#left {
+   width: 12%;
+   margin-top: 30px;
+   height: 100%;
+   border-radius: 10px;
+   margin-right: 100px;
+   
+}
+
+.left_inside {
+   background: #1c5c50;
+   margin: 0 0 0 0;
+   border-radius: 10px;
+   padding: 10px;
+   box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.2);
+   width: 200px;
+   height: 150px;
+}
+
+.left_menubar {
+   margin-left: 5px;
+   
+}
+
+
+.left_menubar  li  a {
+   color: white !important;
+   text-decoration: none;
+   
+}
+/* 좌측메뉴 종료 */
+
+/* 팀순위 시작 */
+.title {
+   display: flex;
+   justify-content: center;
+   background-color: #1c5c50;
+   color: white !important;
+   margin-top: 20px;
+   height: 60px;
+   font-weight: bold;
+   line-height: 60px;
+   border-radius: 10px;
+}
+
+.stats {
+   width: 100%;
+   margin-top: 30px;
+   margin-bottom: 50px;
+   border: 1px solid black;
+   
+
+}
+
+.stats tr, td{
+   color: black !important;
+   text-align: center;
+   padding: 5px 5px 5px 5px;
+   border: 1px dotted;
+      
+}
+
+#firstTr td{
+   background-color: gray;
+   font-weight: 600;
+   font-size: large;
+   color: white !important;
+}
+
+.firstTd{
+   background-color: lightgray;
+   font-weight: 600;
+}
+
+#dreamsTd td{
+   font-weight: 600;
+   color: #1c5c50 !important;
+}
+
+
+
+/* 팀순위 종료 */
