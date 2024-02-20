@@ -2,7 +2,7 @@ package pj.mvc.dreams_project2.dao;
 
 import java.util.List;
 
-import pj.mvc.jsp.dto.ProductDTO;
+import pj.mvc.dreams_project2.dto.ProductDTO;
 
 public interface ProductDAO {
 	

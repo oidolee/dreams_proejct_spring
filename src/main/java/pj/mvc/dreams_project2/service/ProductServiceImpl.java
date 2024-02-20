@@ -7,11 +7,14 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import pj.mvc.jsp.dao.ProductDAO;
-import pj.mvc.jsp.dao.ProductDAOImpl;
-import pj.mvc.jsp.dto.ProductDTO;
-import pj.mvc.jsp.page.Paging;
+import org.springframework.stereotype.Service;
 
+import pj.mvc.dreams_project2.dao.ProductDAO;
+import pj.mvc.dreams_project2.dao.ProductDAOImpl;
+import pj.mvc.dreams_project2.dto.ProductDTO;
+import pj.mvc.dreams_project2.page.Paging;
+
+@Service
 public class ProductServiceImpl implements ProductService {
 
 	// 상품 목록

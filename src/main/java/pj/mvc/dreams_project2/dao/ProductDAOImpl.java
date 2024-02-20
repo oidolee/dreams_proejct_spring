@@ -12,8 +12,11 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-import pj.mvc.jsp.dto.ProductDTO;
+import org.springframework.stereotype.Repository;
 
+import pj.mvc.dreams_project2.dto.ProductDTO;
+
+@Repository
 public class ProductDAOImpl implements ProductDAO {
 
 	DataSource dataSource = null;
