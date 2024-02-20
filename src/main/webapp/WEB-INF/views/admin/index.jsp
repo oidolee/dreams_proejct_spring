@@ -51,7 +51,7 @@
 .floating-box {
 	width: 50px;
 	height: 50px;
-	background: url("../image/logoSmall.png") no-repeat 50% 50%;
+	background: url("${path}/resources/image/logoSmall.png") no-repeat 50% 50%;
 	background-size: 110px;
 	position: fixed;
 	bottom: 10px;
@@ -132,7 +132,7 @@ to {
 		<div id="layoutSidenav_nav">
 			<!-- 왼쪽 nav -->
 			<%@ include file="./templet/nav.jsp"%>
-			<a href="${path}/admin.gc">
+			<a href="${path}/">
 				<div class="floating-box"></div>
 			</a>
 		</div>

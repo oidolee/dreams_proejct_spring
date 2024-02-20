@@ -240,7 +240,7 @@
             <a href="#header"></a>
         </div>
 		<%-- <c:if test='${sessionID.equals("admin")}'> --%>
-		    <a href="${path}/admin.gc">
+		    <a href="${path}/resources/admin/index.jsp">
 		        <div class="floating-box left"></div>
 		    </a>
 		<%-- </c:if> --%>
