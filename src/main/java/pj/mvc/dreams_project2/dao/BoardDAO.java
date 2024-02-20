@@ -1,14 +1,15 @@
 package pj.mvc.dreams_project2.dao;
 
 import java.util.List;
+import java.util.Map;
 
-import pj.mvc.jsp.dto.BoardDTO;
-import pj.mvc.jsp.dto.Board_reviewDTO;
+import pj.mvc.dreams_project2.dto.BoardDTO;
+import pj.mvc.dreams_project2.dto.Board_reviewDTO;
 
 public interface BoardDAO {
 	
 	// 게시글 목록
-	public List<BoardDTO> boardList(int start, int end);
+	public List<BoardDTO> boardList(Map<String, Object> map);
 
 	// 게시글 갯수 조회
 	public int boardCnt();
@@ -32,7 +33,7 @@ public interface BoardDAO {
 	public void reviewInsert(Board_reviewDTO dto);
 
 	// 댓글 목록
-	public List<Board_reviewDTO> reviewList(int start, int end, int board_No);
+	public List<Board_reviewDTO> reviewList(Map<String, Object> map);
 
 	// 댓글 갯수 조회
 	public int reviewCount(int board_No);
@@ -41,7 +42,7 @@ public interface BoardDAO {
 	public int boardSearchCnt(String searchKey);
 
 	// 검색한 게시글 목록
-	public List<BoardDTO> boardSearchList(int start, int end, String searchKey);
+	public List<BoardDTO> boardSearchList(Map<String, Object> map);
 
 	// 댓글 삭제 / 관리자 댓글 숨기기
 	public void reviewDelete(int review_No);
@@ -50,7 +51,7 @@ public interface BoardDAO {
 	public int boardTotalCnt();
 
 	// 관리자 게시글 목록
-	public List<BoardDTO> admin_boardList(int start, int end);
+	public List<BoardDTO> admin_boardList(Map<String, Object> map);
 
 	// 관리자 게시글 보이기
 	public void boardView(int boardNo);
@@ -62,7 +63,7 @@ public interface BoardDAO {
 	public int reviewTotalCnt(int board_No);
 	
 	// 관리자 댓글 목록
-	public List<Board_reviewDTO> reviewList_admin(int start, int end, int board_No);
+	public List<Board_reviewDTO> reviewList_admin(Map<String, Object> map);
 
 	// 관리자 댓글 보이기
 	public void reviewView_admin(int review_No);
