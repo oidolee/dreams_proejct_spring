@@ -1,0 +1,9 @@
+@charset "UTF-8";
+
+#ticketIns {
+	width: 1000px;
+}
+
+#ticketIns td {
+	border: 1px solid black;
+}
