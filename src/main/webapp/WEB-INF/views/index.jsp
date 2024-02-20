@@ -239,11 +239,11 @@
         <div id="goTop" class="goTop">
             <a href="#header"></a>
         </div>
-		<c:if test='${sessionID.equals("admin")}'>
+		<%-- <c:if test='${sessionID.equals("admin")}'> --%>
 		    <a href="${path}/resources/admin/index.jsp">
 		        <div class="floating-box left"></div>
 		    </a>
-		</c:if>
+		<%-- </c:if> --%>
 
      	<jsp:include page="./layout/footer.jsp"></jsp:include> 
         
