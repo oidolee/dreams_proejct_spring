@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+     
+<mapper namespace="pj.mvc.dreams_project2.dao.TicketDAO">  <!-- namespace="패키지명.인터페이스" -->
+
+	<!-- 티켓 전체 조회 -->
+	<select id="ticketList" parameterType="String" resultType="pj.mvc.dreams_project2.dto.TicketDTO">
+		SELECT * FROM DR_ticket
+	</select>
+
+	<!-- 티켓 예매 처리 - insert -->
+	<insert id="ticketRes" parameterType="pj.mvc.dreams_project2.dto.TicketResDTO">
+		INSERT INTO DR_ticket_reservation (ticket_no, ticket_seat, cust_Id, game_date, purchase_date, ticket_price) 
+				VALUES((SELECT NVL(MAX(ticket_no) + 1, TO_NUMBER(TO_CHAR(SYSDATE, 'YYMMDD') || '001')) FROM DR_ticket_reservation), 
+					#{ticket_seat}, #{cust_Id}, #{game_date}, sysdate, #{ticket_price})
+	</insert>
+	
+	<!-- 티켓 예매 취소 -->
+	<update id="ticketCancle" parameterType="int">
+		UPDATE DR_ticket_reservation 
+		   SET show = 'n' 
+		 WHERE ticket_no = #{ticket_no}
+	</update>
+	
+	<!-- 티켓 예매 확인, 마이페이지 티켓 예매 확인 -->
+	<select id="ResCheckTicket" parameterType="String" resultType="pj.mvc.dreams_project2.dto.TicketResDTO">
+		SELECT *  
+          FROM ( 
+                SELECT A.*,  
+                        rownum AS rn 
+                FROM  
+                    ( 
+                    SELECT * 
+                    FROM DR_ticket_reservation  
+                    WHERE show ='y' 
+                    ORDER BY ticket_no DESC
+                    ) A 
+                ) 
+         WHERE cust_Id=#{strId}
+	</select>
+	
+	<!-- 티켓 개별 조회 -->
+	<select id="ticketEach" parameterType="String" resultType="pj.mvc.dreams_project2.dto.TicketDTO">
+		SELECT ticket_seat, ticket_grade_normal, ticket_grade_membership, ticket_grade_child FROM DR_ticket WHERE ticket_seat=#{strTicket_seat}
+	</select>
+	
+	<!-- 티켓 가격 수정 -->
+	<update id="ticketUpdate" parameterType="pj.mvc.dreams_project2.dto.TicketDTO">
+		UPDATE DR_ticket
+		   SET ticket_grade_normal = #{ticket_grade_normal}, 
+		       ticket_grade_membership = #{ticket_grade_membership},
+		       ticket_grade_child = #{ticket_grade_child} 
+		 WHERE ticket_seat = #{ticket_seat}
+	</update>
+	
+	<!-- 티켓 삭제 -->
+	<delete id="ticketDelete" parameterType="String">
+		DELETE 
+		  FROM DR_ticket 
+		 WHERE ticket_seat = #{strTicket_seat}
+	</delete>
+	
+	<!-- 티켓 추가 -->
+	<insert id="ticketInsert" parameterType="pj.mvc.dreams_project2.dto.TicketDTO">
+		INSERT INTO DR_ticket (ticket_seat, ticket_grade_normal, ticket_grade_membership, ticket_grade_child)
+					   VALUES(#{ticket_seat}, #{ticket_grade_normal}, #{ticket_grade_membership}, #{ticket_grade_child})
+	</insert>
+	
+	<!-- 회원정보 찾기 -->
+	<select id="customerDetail" parameterType="String" resultType="pj.mvc.dreams_project2.dto.CustomerDTO">
+		SELECT * FROM DR_customers WHERE cust_Id=#{strId}
+	</select>
+	
+	<!-- 관리자 페이지 티켓 예매 전체내역 조회 -->
+	<select id="ticketResAdminList" parameterType="java.util.Map" resultType="pj.mvc.dreams_project2.dto.TicketResDTO">
+		SELECT *  
+		  FROM ( 
+		        SELECT A.*,  
+		                rownum AS rn 
+		        FROM  
+		            ( 
+		            SELECT * 
+		            FROM DR_ticket_reservation  
+		            ORDER BY ticket_no DESC
+		            ) A 
+		        ) 
+		 WHERE rn BETWEEN #{start} AND #{end}
+	</select>
+	
+	<!-- 관리자 페이지 티켓 넘버로 예매 상세내역 조회 - select -->
+	<select id="ticketResDetail" parameterType="int" resultType="pj.mvc.dreams_project2.dto.TicketResDTO">
+		SELECT *  FROM DR_ticket_reservation
+					WHERE ticket_no =#{ticket_no}
+	</select>
+	
+	<!-- 티켓 예매 갯수 구하기 -->
+	<select id="ticketResCnt" resultType="int">
+		SELECT COUNT(*) as cnt 
+					FROM DR_ticket_reservation
+	</select>
+	
+</mapper> 
