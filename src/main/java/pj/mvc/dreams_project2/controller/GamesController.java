@@ -28,4 +28,18 @@ public class GamesController {
 		return "page_3/games";
 	}
 	
+	@RequestMapping("admin.gc")
+	public String admin(HttpServletRequest req, Model model) 
+			throws ServletException, IOException {
+		System.out.println(" admin start");
+		return "admin/index";
+	}
+	
+	@RequestMapping("gamesInsert.gc")
+	public String gamesInsert(HttpServletRequest req, Model model) 
+			throws ServletException, IOException {
+		System.out.println(" gamesInsert start");
+		return "admin/games/games";
+	}
+	
 }

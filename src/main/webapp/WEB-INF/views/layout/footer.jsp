@@ -11,18 +11,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>드림즈</title>
     <!-- reset.css -->
-    <link rel="stylesheet" href="/dreams_project_2/resources/css/common/reset.css">
+    <link rel="stylesheet" href="${path}/resources/css/common/reset.css">
     <!-- Bootstrap css-->
     <link href="../resources/css/bootstrap/bootstrap.css" rel="stylesheet" />
     <!-- swiper css-->
-    <link rel="stylesheet" href="/dreams_project_2/resources/css/common/common.css">
-    <link rel="stylesheet" href="/dreams_project_2/resources/css/common/footer.css">
-    <link rel="stylesheet" href="/dreams_project_2/resources/css/index.css">
+    <link rel="stylesheet" href="${path}/resources/css/common/common.css">
+    <link rel="stylesheet" href="${path}/resources/css/common/footer.css">
+    <link rel="stylesheet" href="${path}/resources/css/index.css">
 
     <!-- jQuery -->
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
     <!-- Bootstrap js -->
-    <script src="./resources/js/bootstrap/bootstrap.bundle.js"></script>
+    <script src="${path}/resources/js/bootstrap/bootstrap.bundle.js"></script>
     
 
     <script>
@@ -75,7 +75,7 @@
                     </div>
                     <div class="item-box">
                         <a href="${path}/index.jsp">
-                            <img src="/dreams_project_2/resources/image/logoSmall.png" alt="드림즈 프로야구단" style="width: 200px;">
+                            <img src="/dreams_project2/resources/image/logoSmall.png" alt="드림즈 프로야구단" style="width: 200px;">
                         </a>
                     </div>
                 </div>
