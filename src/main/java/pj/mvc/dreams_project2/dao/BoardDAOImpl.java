@@ -26,7 +26,7 @@ public class BoardDAOImpl implements BoardDAO{
 		if(instance == null)
 			instance = new BoardDAOImpl();
 		
-		return instance;
+		return instance; 
 	}
 	
 	// 디폴트생성자
