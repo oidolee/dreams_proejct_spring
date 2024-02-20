@@ -53,7 +53,7 @@ public class ProductDAOImpl implements ProductDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		List<ProductDTO> list = new ArrayList<>();
-		;
+		
 		try {
 			conn = dataSource.getConnection();
 
