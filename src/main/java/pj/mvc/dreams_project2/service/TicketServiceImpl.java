@@ -8,12 +8,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import pj.mvc.jsp.dto.CustomerDTO;
-import pj.mvc.jsp.dao.TicketDAO;
-import pj.mvc.jsp.dao.TicketDAOImpl;
-import pj.mvc.jsp.dto.TicketDTO;
-import pj.mvc.jsp.dto.TicketResDTO;
-import pj.mvc.jsp.page.PagingTicket;
+import pj.mvc.dreams_project2.dto.CustomerDTO;
+import pj.mvc.dreams_project2.dao.TicketDAO;
+import pj.mvc.dreams_project2.dao.TicketDAOImpl;
+import pj.mvc.dreams_project2.dto.TicketDTO;
+import pj.mvc.dreams_project2.dto.TicketResDTO;
+import pj.mvc.dreams_project2.page.PagingTicket;
 
 public class TicketServiceImpl implements TicketService {
 

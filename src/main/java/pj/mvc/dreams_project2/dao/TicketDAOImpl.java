@@ -12,10 +12,9 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-import pj.mvc.jsp.dto.CustomerDTO;
-import pj.mvc.jsp.dto.ProductDTO;
-import pj.mvc.jsp.dto.TicketDTO;
-import pj.mvc.jsp.dto.TicketResDTO;
+import pj.mvc.dreams_project2.dto.CustomerDTO;
+import pj.mvc.dreams_project2.dto.TicketDTO;
+import pj.mvc.dreams_project2.dto.TicketResDTO;
 
 public class TicketDAOImpl implements TicketDAO {
 

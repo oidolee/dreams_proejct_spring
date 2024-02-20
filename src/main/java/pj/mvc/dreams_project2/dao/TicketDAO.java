@@ -2,9 +2,9 @@ package pj.mvc.dreams_project2.dao;
 
 import java.util.List;
 
-import pj.mvc.jsp.dto.CustomerDTO;
-import pj.mvc.jsp.dto.TicketDTO;
-import pj.mvc.jsp.dto.TicketResDTO;
+import pj.mvc.dreams_project2.dto.CustomerDTO;
+import pj.mvc.dreams_project2.dto.TicketDTO;
+import pj.mvc.dreams_project2.dto.TicketResDTO;
 
 public interface TicketDAO {
 
