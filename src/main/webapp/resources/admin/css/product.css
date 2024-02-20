@@ -1,0 +1,66 @@
+@charset "UTF-8";
+
+.tableContent .displayNone {
+	display: none !important;
+}
+
+.tableContent .pageBox, .tableContent .pageCon {
+	display: flex;
+}
+
+.chartCon {
+	display: flex;
+	justify-content: center;
+	overflow-x: auto;
+}
+
+.floating-box {
+	width: 50px;
+	height: 50px;
+	background: url("../../image/logoSmall.png") no-repeat 50% 50%;
+	background-size: 110px;
+	position: fixed;
+	bottom: 10px;
+	left: 250px;
+	border-radius: 5px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: #fff;
+	font-weight: bold;
+	cursor: pointer;
+	animation: floatUpDown 1s infinite alternate;
+	transition: transform 0.3s;
+	z-index: 10000;
+}
+
+.floating-box:hover {
+	transform: translateY(-5px);
+}
+
+.floating-box::before {
+	content: "드림즈 메인";
+	white-space: pre-line;
+	position: absolute;
+	width: 58px;
+	text-align: center;
+	top: -50px;
+	left: 50%;
+	transform: translateX(-50%);
+	background-color: #1c5c50;
+	color: #fff;
+	padding: 5px;
+	border-radius: 3px;
+	font-size: 12px;
+	opacity: 0;
+	transition: opacity 1s ease-in-out;
+}
+
+.floating-box:hover::before {
+	opacity: 1;
+}
+
+#productTable tr td,
+#productTable tr th {
+  border: 1px solid #000; /* 테두리 색상 및 두께를 필요에 따라 조절하세요 */
+}

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+     
+<mapper namespace="pj.mvc.dreams_project2.dao.CustomerDAO">	<!-- namespace="패키지명.인터페이스" -->
+
+	<!-- resultType="int"이면 COUNT(*)로 바꿔야함 -->
+	
+	<!-- ID 중복확인 처리 -->
+	<select id="useridCheck" parameterType="String" resultType="int">	<!-- 메서드명이 id값으로 -->
+		SELECT COUNT(*) FROM DR_customers WHERE cust_Id=#{strUserid}
+	</select>
+	
+	<!-- 회원가입 처리 -->	<!-- 주의사항 앞에 dto. 쓰지않음 멤버변수명으로 가져옴 -->
+	<insert id="insertCustomer" parameterType="pj.mvc.dreams_project2.dto.CustomerDTO">
+		INSERT INTO DR_customers(cust_Id, cust_Name, cust_Password, cust_Email, cust_Birth, cust_Phone, cust_Address, cust_No)
+		VALUES(#{cust_Id}, #{cust_Name}, #{cust_Password}, #{cust_Email}, #{cust_Birth}, #{cust_Phone}, #{cust_Address}, (SELECT NVL(MAX(cust_No)+1,1 ) FROM DR_customers))
+	</insert>
+	
+	<!-- 로그인 처리 / 회원정보 인증(수정, 탈퇴) -->
+	<select id="idPasswordChk" parameterType="java.util.Map" resultType="int">	
+		SELECT COUNT(*) FROM DR_customers WHERE cust_Id=#{strId} and cust_password=#{strPassword} and show ='y'
+	</select>
+	
+	<!-- 회원 탈퇴 처리 -->
+	<update id="deleteCustomer" parameterType="String">
+		UPDATE DR_customers SET show = 'n' WHERE cust_Id = #{strId}
+	</update>
+	
+	<!-- 회원 상세페이지 -->
+	<select id="getCustomerDetail" parameterType="String" resultType="pj.mvc.dreams_project2.dto.CustomerDTO">
+		SELECT * FROM DR_customers WHERE cust_Id = #{strId}
+	</select>
+	
+	<!-- 회원정보 수정 처리 -->
+	<update id="updateCustomer" parameterType="pj.mvc.dreams_project2.dto.CustomerDTO">
+		UPDATE DR_customers SET cust_Name = #{cust_Name}, cust_Password = #{cust_Password},
+				cust_Email = #{cust_Email}, cust_Birth = #{cust_Birth}, cust_Phone = #{cust_Phone}
+			WHERE cust_Id = #{cust_Id}
+	</update>
+	
+	
+	<!-- 관리자모드 - 회원 전체 조회 -->
+	<select id="SelectCustomer" parameterType="java.util.Map" resultType="pj.mvc.dreams_project2.dto.CustomerDTO">
+		<![CDATA[
+		SELECT * FROM (
+				SELECT A.*,  
+						rownum AS rn    
+			    	FROM (
+			    			SELECT * FROM DR_customers
+			           		ORDER BY cust_No DESC
+			           ) A
+				) 
+		WHERE rn >= #{start} 
+		  AND rn <= #{end}
+         ]]>
+	</select>
+		               
+		               
+	<!-- 관리자모드 - 회원 상세 정보 -->
+	<select id="admin_getCustomerDetail" parameterType="int" resultType="pj.mvc.dreams_project2.dto.CustomerDTO">
+		SELECT * FROM DR_customers WHERE cust_No = #{cust_No}
+	</select>
+	
+	<!-- 관리자모드 - 회원 상세 정보 - 계정복구 -->
+	<update id="admin_recoverCustomer" parameterType="int">
+		UPDATE DR_customers SET show = 'y' 
+			WHERE cust_No = #{cust_No}
+	</update>
+	
+	<!-- 관리자모드 - 회원 상세 정보 - 계정삭제 -->
+	<update id="admin_suspendCustomer" parameterType="int">
+		UPDATE DR_customers SET show = 'n' 
+			WHERE cust_No = #{cust_No}
+	</update>
+	
+	<!-- 관리자모드 - 회원 상세 정보 - 영구삭제 -->
+	<delete id="admin_deleteCustomer" parameterType="int">
+		DELETE FROM DR_customers WHERE cust_No = #{cust_No}
+	</delete>
+	
+	<!-- 관리자모드 - 회원 전체 조회 갯수 구하기 -->
+	<select id="CustomerCnt" resultType="int">
+		SELECT COUNT(*) as cnt FROM DR_customers
+	</select>
+</mapper>
