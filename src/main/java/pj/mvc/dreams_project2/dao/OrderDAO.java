@@ -2,14 +2,16 @@ package pj.mvc.dreams_project2.dao;
 
 import java.util.List;
 
-import pj.mvc.jsp.dto.OrderDTO;
-import pj.mvc.jsp.dto.OrderDetailDTO;
-import pj.mvc.jsp.dto.RefundDTO;
+import pj.mvc.dreams_project2.dto.OrderDTO;
+import pj.mvc.dreams_project2.dto.OrderDetailDTO;
+import pj.mvc.dreams_project2.dto.RefundDTO;
+
+
 
 public interface OrderDAO {
 	
 	// 내 주문 조회
-	public List<OrderDTO> OrderDetail(String cust_Id);
+	public List<OrderDTO> orderDetail(String cust_Id);
 	
 	// 내 주문내역 - 구매 확정
 	public int confirmOrder(int order_No);
