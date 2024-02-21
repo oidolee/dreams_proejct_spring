@@ -14,18 +14,18 @@ public interface GamesService {
 	public void gamesListAction(HttpServletRequest req, Model model)  
 			throws ServletException, IOException;
 	//팀내역 출력 
-	public void teamListAction(HttpServletRequest req, HttpServletResponse res) 
+	public void teamListAction(HttpServletRequest req, Model model) 
 			throws ServletException, IOException;
 	//게임일정 등록
-	public void gamesInsertAction(HttpServletRequest req, HttpServletResponse res) 
+	public void gamesInsertAction(HttpServletRequest req, Model model) 
 			throws ServletException, IOException;
 	//경기 일정 삭제
-	public void deleteGamesAction(HttpServletRequest req, HttpServletResponse res) 
+	public void deleteGamesAction(HttpServletRequest req, Model model) 
 			throws ServletException, IOException;	
 	//게임일정 상세내역
-	public void getDetail(HttpServletRequest req, HttpServletResponse res)
+	public void getDetail(HttpServletRequest req, Model model)
 			throws ServletException, IOException;
 	//게임일정 수정
-	public void gamesUpdateAction(HttpServletRequest req, HttpServletResponse res) 
+	public void gamesUpdateAction(HttpServletRequest req, Model model) 
 			throws ServletException, IOException;
 }

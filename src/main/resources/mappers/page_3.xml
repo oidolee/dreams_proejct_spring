@@ -8,4 +8,39 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectGamesList" resultType="pj.mvc.dreams_project2.dto.gamesDTO">
 		SELECT * FROM DR_Gemes
 	</select>
+	
+	<!-- KBO 등록팀 불러오기 -->
+	<select id="selectTeamList" resultType="pj.mvc.dreams_project2.dto.TeamDTO">
+		SELECT * FROM DR_KBOTeams
+	</select>
+	
+	<!-- // 홈팀 위치 정보 -->
+	<select id="getLocation" parameterType="String" resultType="String">
+		SELECT DK_Location FROM DR_KBOTeams 
+			WHERE DK_TeamName = #{dG_Home}
+	</select>
+	
+	<!-- 경기일정 등록시 날짜 중복체크	 -->
+	<select id="checkSql" parameterType="String" resultType="int">
+	    SELECT COUNT(*) FROM DR_Gemes WHERE TRUNC(DG_Time) = #{formattedDate}
+	</select>
+
+	<!-- 경기일정등록 -->
+	<insert id="insertGames" parameterType="pj.mvc.dreams_project2.dto.gamesDTO">
+		INSERT INTO DR_Gemes(DG_No, DG_Home, DG_Away, DG_Location, DG_Time) 
+			VALUES(nvl((select max(DG_No) from DR_Gemes)+1,1),#{DG_Home}, #{DG_Away}, #{DG_Location}, #{DG_Time})
+	</insert>
+	
+	<!-- 경기일정 수정 정보  -->
+	<select id="getDetail" parameterType="int" resultType="pj.mvc.dreams_project2.dto.gamesDTO">
+		SELECT * FROM DR_Gemes WHERE DG_No = #{DG_No} 
+	</select>
+	
+	<!-- 경기일정 수정 -->
+	<update id="updateGames" parameterType="pj.mvc.dreams_project2.dto.gamesDTO" >
+		UPDATE DR_Gemes 
+			SET DG_Home = #{DG_Home}, DG_Away = #{DG_Away}, DG_Location = #{DG_Location}, DG_Time = #{DG_Time} 
+			WHERE DG_No = #{DG_No}
+	</update>
+	
 </mapper>

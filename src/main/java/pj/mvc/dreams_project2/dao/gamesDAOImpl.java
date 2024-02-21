@@ -98,99 +98,25 @@ public class gamesDAOImpl implements gamesDAO {
 
 	//팀 내역 출력
 	public List<TeamDTO> selectTeamList() {
-		List<TeamDTO> list = null;
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		
-		try {
-			list = new ArrayList<>();
-			conn = dataSource.getConnection();
-			String sql = "SELECT * FROM DR_KBOTeams";
-			pstmt = conn.prepareStatement(sql);
-			rs = pstmt.executeQuery();
-			while (rs.next()) {
-				TeamDTO dto = new TeamDTO();
-				dto.setDK_No(rs.getInt("dK_No"));
-				dto.setDK_TeamName(rs.getString("DK_TeamName"));
-				dto.setDK_Location(rs.getString("DK_Location"));
-				list.add(dto);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if(rs != null)rs.close();
-				if(pstmt != null)pstmt.close();
-				if(conn != null)conn.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-		
+		List<TeamDTO> list = sqlSession.selectList("pj.mvc.dreams_project2.dao.gamesDAO.selectTeamList");
 		return list;
 	}
 
 	//경기 일정 등록
 	public int insertGames(gamesDTO dto) {
-	    int insertCnt = 0;
-	    Connection conn = null;
-	    PreparedStatement pstmt = null;
-	    ResultSet rs = null;
-
-	    try {
-	        // 해당 연월일에 이미 정보가 있는지 확인하는 쿼리
-	        String checkSql = "SELECT COUNT(*) FROM DR_Gemes WHERE TRUNC(DG_Time) = TO_DATE(?, 'YYYY-MM-DD')";
-	        //String checkSql = "SELECT COUNT(*) FROM DR_Gemes WHERE DATE(DG_Time) = ?";
-	        
-	        conn = dataSource.getConnection();
-	        
-	        //연월일 체크를 위해 형식 변경 
-	        Timestamp timestamp = dto.getDG_Time();
-	        Date date = new Date(timestamp.getTime());
-	        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-	        String formattedDate = dateFormat.format(date);
-
-	        // 이미 정보가 있는지 확인
-	        pstmt = conn.prepareStatement(checkSql);
-	        pstmt.setString(1, formattedDate);
-	        rs = pstmt.executeQuery();
-	        
-	        if (rs.next() && rs.getInt(1) > 0) {
-	            // 이미 정보가 있으면 insertCnt를 2로 설정
-	            insertCnt = 2;
-	        } else {
-	            // 정보가 없으면 INSERT 쿼리 실행
-	            String sql = "INSERT INTO DR_Gemes(DG_No, DG_Home, DG_Away, DG_Location, DG_Time) VALUES(nvl((select max(DG_No) from DR_Gemes)+1,1),?, ?, ?, ?)";
-	            //String sql = "INSERT INTO DR_Gemes(DG_Home, DG_Away, DG_Location, DG_Time) VALUES(?, ?, ?, ?)";
-	            pstmt = conn.prepareStatement(sql);
-	            pstmt.setString(1, dto.getDG_Home());
-	            pstmt.setString(2, dto.getDG_Away());
-	            pstmt.setString(3, dto.getDG_Location());
-	            pstmt.setTimestamp(4, dto.getDG_Time());
-	            insertCnt = pstmt.executeUpdate();
-	        }
-
-	    } catch (SQLException e) {
-	        e.printStackTrace();
-	    } finally {
-	        // 리소스 정리
-	        try {
-	            if (rs != null) rs.close();
-	            if (pstmt != null) pstmt.close();
-	            if (conn != null) conn.close();
-	        } catch (SQLException e) {
-	            e.printStackTrace();
-	        } finally {
-				try {
-					if(rs != null)rs.close();
-					if(pstmt != null)pstmt.close();
-					if(conn != null)conn.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-	    }
+		System.out.println(" insertGames1 - start ");
+		int insertCnt = 0;
+		  //연월일 체크를 위해 형식 변경 
+	    Timestamp timestamp = dto.getDG_Time();
+	    Date date = new Date(timestamp.getTime());
+	    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+	    String formattedDate = dateFormat.format(date);
+	    System.out.println( " formattedDate : " + formattedDate) ;
+		int checkDatInt = sqlSession.selectOne("pj.mvc.dreams_project2.dao.gamesDAO.checkSql",formattedDate);
+		System.out.println("checkDatInt : " + checkDatInt);
+		if(checkDatInt == 0) {
+			insertCnt = sqlSession.insert("pj.mvc.dreams_project2.dao.gamesDAO.insertGames",dto);
+		}
 
 	    return insertCnt;
 	}
@@ -198,30 +124,9 @@ public class gamesDAOImpl implements gamesDAO {
 	// 홈팀 위치 정보
 	public String getLocation(String dG_Home) {
 		String DG_Location = "";
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		
-		try {
-			String sql = "SELECT DK_Location FROM DR_KBOTeams WHERE DK_TeamName = ? ";
-			conn = dataSource.getConnection();
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, dG_Home);
-			rs = pstmt.executeQuery();
-			if(rs.next()) {
-				DG_Location = rs.getString("DK_Location");
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if(rs != null)rs.close();
-				if(pstmt != null)pstmt.close();
-				if(conn != null)conn.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
+		System.out.println("dG_Home : " + dG_Home);
+		DG_Location = sqlSession.selectOne("pj.mvc.dreams_project2.dao.gamesDAO.getLocation",dG_Home);
+		System.out.println("DG_Location : " + DG_Location);
 		return DG_Location;
 	}
 	
@@ -256,51 +161,22 @@ public class gamesDAOImpl implements gamesDAO {
 	//경기일정 상세
 	public gamesDTO getDetail(int DG_No) {
 		
-		gamesDTO dto = null;
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		
-		try {
-			String sql = "SELECT * FROM DR_Gemes WHERE DG_No = ? ";
-			conn = dataSource.getConnection();
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, DG_No);
-			rs = pstmt.executeQuery();
-			
-			dto = new gamesDTO();
-			while(rs.next()) {
-				dto.setDG_No(DG_No);
-				dto.setDG_Home(rs.getString("DG_Home"));
-				dto.setDG_Away(rs.getString("DG_Away"));
-				dto.setDG_Time(rs.getTimestamp("DG_Time"));
-			}
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if(rs != null)rs.close();
-				if(pstmt != null)pstmt.close();
-				if(conn != null)conn.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
+		gamesDTO dto = sqlSession.selectOne("pj.mvc.dreams_project2.dao.gamesDAO.getDetail", DG_No);
 		return dto;
 	}
 	
 	//경기일정 수정
 	public int updateGames(gamesDTO dto) {
-	    int updateCnt = 0;
-	    Connection conn = null;
-	    PreparedStatement pstmt = null;
-	    ResultSet rs = null;
+	    int updateCnt = sqlSession.update("pj.mvc.dreams_project2.dao.gamesDAO.updateGames", dto);
 	    
-	    try {
-	    	String sql = "UPDATE DR_Gemes"
-	    				+ " SET DG_Home = ?, DG_Away = ?, DG_Location = ?, DG_Time = ? "
-	    				+ " WHERE DG_No = ? ";
+		/*  Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			String sql = "UPDATE DR_Gemes"
+						+ " SET DG_Home = ?, DG_Away = ?, DG_Location = ?, DG_Time = ? "
+						+ " WHERE DG_No = ? ";
 			conn = dataSource.getConnection();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, dto.getDG_Home());
@@ -313,7 +189,7 @@ public class gamesDAOImpl implements gamesDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+		*/
 		return updateCnt;
 	}
 	
