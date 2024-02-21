@@ -2,7 +2,7 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="/WEB-INF/views/layout/setting.jsp" %>
+<%@ include file="../../layout/setting.jsp" %>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -14,8 +14,8 @@
     <meta name="author" content="" />
     <title>드림즈 관리자</title>
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
-    <link href="/WEB-INF/views/admin/css/styles.css" rel="stylesheet" />
-    <link href="/WEB-INF/views/admin/css/ticket.css" rel="stylesheet" />
+    <link href="${path }/resources/admin/css/styles.css" rel="stylesheet" />
+    <link href="${path }/resources/admin/css/ticket.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     <!-- chartJs -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
@@ -160,10 +160,10 @@
 </head>
 <body class="sb-nav-fixed">
 
-	<%@ include file="/WEB-INF/views/admin/templet/header.jsp" %>
+	<%@ include file="../templet/header.jsp" %>
 	<div id="layoutSidenav">
         <div id="layoutSidenav_nav">
-        	<%@ include file="/WEB-INF/views/admin/templet/nav.jsp" %>
+        	<%@ include file="../templet/nav.jsp" %>
             <a href="../index.jsp">
                 <div class="floating-box"></div>
             </a>
