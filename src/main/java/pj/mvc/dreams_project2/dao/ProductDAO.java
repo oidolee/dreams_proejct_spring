@@ -15,13 +15,13 @@ public interface ProductDAO {
 	
 	// 2. 상품 추가
 	public int insertProduct(ProductDTO dto);
-//	// 3. 상품 삭제
-//	public int productDelete(int product_No);
+	// 3. 상품 삭제
+	public int productDelete(int product_No);
 	// 4. 상품 수정
 	public int productUpdate(ProductDTO dto);
 	// 5. 상품 상세 페이지
 	public ProductDTO productDetail(int product_No);
-//	
-//	// 6. 고객 상세페이지 
-//	public ProductDTO customerList(String product_Name);
+	
+	// 6. 고객 상세페이지 
+	public ProductDTO customerList(String product_Name);
 }
