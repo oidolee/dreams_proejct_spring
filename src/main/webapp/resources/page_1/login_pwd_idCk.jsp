@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../layout/setting.jsp" %>
+<%@ include file="/WEB-INF/views/layout/setting.jsp" %>
 <!DOCTYPE html>
 <html lang="ko">
 <!-- 페이지 작업자 : 윤석무 -->
@@ -151,7 +151,7 @@ input:focus {
 </head>
 <div class="wrap">
     <body>
-    	<%@ include file="../layout/header.jsp"%>
+    	<%@ include file="/WEB-INF/views/layout/header.jsp"%>
       
         <div class="slider-con">
 			<div class="slider-box">
@@ -226,7 +226,7 @@ input:focus {
             </div>
         </section>
      
-		<%@ include file="../layout/footer.jsp"%>
+		<%@ include file="/WEB-INF/views/layout/footer.jsp"%>
         <script>
             //메인 스크롤 이벤트 
             window.sr = ScrollReveal({ reset: true });
