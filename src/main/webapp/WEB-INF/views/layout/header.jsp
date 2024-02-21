@@ -65,7 +65,7 @@
                 <div class="header-bottom">
                     <nav>
                         <h2>
-                            <a href="${path}/index.jsp">
+                            <a href="${path}">
                                 <img src="${path}/resources/image/logoSmall.png" style="width: 100%;" alt="logoSmall">
                             </a>
                         </h2>

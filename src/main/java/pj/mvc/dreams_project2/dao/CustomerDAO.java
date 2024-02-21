@@ -1,10 +1,13 @@
 package pj.mvc.dreams_project2.dao;
 
 import java.util.List;
+import java.util.Map;
+
+import pj.mvc.dreams_project2.dto.CustomerDTO;
 
 
 
-import pj.mvc.jsp.dto.CustomerDTO;
+
 
 public interface CustomerDAO {
 	
@@ -15,7 +18,7 @@ public interface CustomerDAO {
 	public int insertCustomer(CustomerDTO dto);
 	
 	// 로그인 처리 / 회원정보 인증(수정, 탈퇴)
-	public int idPasswordChk(String strId, String strPassword);
+	public int idPasswordChk(Map<String, Object> map);
 	
 	// 회원 탈퇴 처리
 	public int deleteCustomer(String strId);
@@ -29,10 +32,10 @@ public interface CustomerDAO {
 //////////////////////////////////////////////////////////////////	
 	
 	// 관리자모드 - 회원 전체 조회
-	public List<CustomerDTO> SelectCustomer(int start, int end);
+	public List<CustomerDTO> SelectCustomer(Map<String, Object> map);
 	
 	// 관리자모드 - 회원 전체 조회 갯수 구하기
-	public int CustomerCnt(CustomerDTO dto);
+	public int CustomerCnt();
 	
 	// 관리자모드 - 회원 상세 정보
 	public CustomerDTO admin_getCustomerDetail(int num);

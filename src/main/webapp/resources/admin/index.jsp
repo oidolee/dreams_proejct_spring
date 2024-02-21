@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="ko">
-<%@ include file="/layout/setting.jsp" %>  
+<%@ include file="../../../WEB-INF/views/layout/setting.jsp" %>  
 
 <head>
     <meta charset="utf-8" />

@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>드림즈 관리자</title>
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
+    <link href="../css/styles.css" rel="stylesheet" />
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <!-- chartJs -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous"></script>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+        <script type="text/javascript">
+        
+            function calculator(){
+                let parkseat =  document.getElementById("parkseat").value; // 좌석 등급
+                let bgNormalPrice = 0, bgMPrice = 0, bgCPrice = 0; // 초기값 설정
+                // let bgNCnt = parseInt(document.getElementById("bgnCnt").value);
+                // let bgMCnt = parseInt(document.getElementById("bgmCnt").value);
+                // let bgCCnt = parseInt(document.getElementById("bgcCnt").value);
+                let discount = 0; // 할인율
+               
+              
+
+                let bgNormalPriceTag =  document.getElementById('bgNormalPrice');
+                let bgMPriceTag =  document.getElementById('bgMPrice');
+                let bgCPriceTag =  document.getElementById('bgCPrice');
+                // 좌석에 따른 가격
+                switch(parkseat){
+                    case "R.d club": 
+                        bgNormalPrice = 55000;
+                        bgMPrice = 55000;
+                        bgCPrice = 55000;
+
+                        if(priceObj[1]["nomal"] != 0){
+                            bgNormalPrice = priceObj[1]["nomal"];
+                        }
+                        if(priceObj[1]["member"] != 0){
+                            bgMPrice = priceObj[1]["member"];
+                        }
+                        if(priceObj[1]["child"] != 0){
+                            bgCPrice = priceObj[1]["child"];
+                        }
+                        break;
+                    case "1층 테이블석": 
+                        bgNormalPrice = 50000;
+                        bgMPrice = 50000;
+                        bgCPrice = 50000;
+
+                        if(priceObj[2]["nomal"] != 0){
+                            bgNormalPrice = priceObj[2]["nomal"];
+                        }
+                        if(priceObj[2]["member"] != 0){
+                            bgMPrice = priceObj[2]["member"];
+                        }
+                        if(priceObj[2]["child"] != 0){
+                            bgCPrice = priceObj[2]["child"];
+                        }
+                    break;
+                    case "2층 테이블석": 
+                        bgNormalPrice = 50000;
+                        bgMPrice = 50000;
+                        bgCPrice = 50000;
+
+                        if(priceObj[3]["nomal"] != 0){
+                            bgNormalPrice = priceObj[3]["nomal"];
+                        }
+                        if(priceObj[3]["member"] != 0){
+                            bgMPrice = priceObj[3]["member"];
+                        }
+                        if(priceObj[3]["child"] != 0){
+                            bgCPrice = priceObj[3]["child"];
+                        }
+                    break;
+                    case "내야커플석": 
+                        bgNormalPrice = 30000;
+                        bgMPrice = 30000;
+                        bgCPrice = 30000;
+
+                        if(priceObj[4]["nomal"] != 0){
+                            bgNormalPrice = priceObj[4]["nomal"];
+                        }
+                        if(priceObj[4]["member"] != 0){
+                            bgMPrice = priceObj[4]["member"];
+                        }
+                        if(priceObj[4]["child"] != 0){
+                            bgCPrice = priceObj[4]["child"];
+                        }
+                    break;
+                    case "외야커플석": 
+                        bgNormalPrice = 17000;
+                        bgMPrice = 17000;
+                        bgCPrice = 17000;
+
+                        if(priceObj[5]["nomal"] != 0){
+                            bgNormalPrice = priceObj[5]["nomal"];
+                        }
+                        if(priceObj[5]["member"] != 0){
+                            bgMPrice = priceObj[5]["member"];
+                        }
+                        if(priceObj[5]["child"] != 0){
+                            bgCPrice = priceObj[5]["child"];
+                        }
+                    break;
+                    case "다크버건디석": 
+                        bgNormalPrice = 17000;
+                        bgMPrice = 17000;
+                        bgCPrice = 8000;
+                        
+                        if(priceObj[6]["nomal"] != 0){
+                            bgNormalPrice = priceObj[6]["nomal"];
+                        }
+                        if(priceObj[6]["member"] != 0){
+                            bgMPrice = priceObj[6]["member"];
+                        }
+                        if(priceObj[6]["child"] != 0){
+                            bgCPrice = priceObj[6]["child"];
+                        }
+                    break;
+                    case "버건디석": 
+                        bgNormalPrice = 15000;
+                        bgMPrice = 	15000;
+                        bgCPrice = 7000;
+
+                        if(priceObj[7]["nomal"] != 0){
+                            bgNormalPrice = priceObj[7]["nomal"];
+                        }
+                        if(priceObj[7]["member"] != 0){
+                            bgMPrice = priceObj[7]["member"];
+                        }
+                        if(priceObj[7]["child"] != 0){
+                            bgCPrice = priceObj[7]["child"];
+                        }
+                    break;
+                    case "3층 지정석": 
+                        bgNormalPrice = 12000;
+                        bgMPrice = 12000;
+                        bgCPrice = 6000;
+                        if(priceObj[8]["nomal"] != 0){
+                            bgNormalPrice = priceObj[8]["nomal"];
+                        }
+                        if(priceObj[8]["member"] != 0){
+                            bgMPrice = priceObj[8]["member"];
+                        }
+                        if(priceObj[8]["child"] != 0){
+                            bgCPrice = priceObj[8]["child"];
+                        }
+                    break;
+                    case "4층 지정석": 
+                        bgNormalPrice = 9000,
+                        bgMPrice = 9000;
+                        bgCPrice = 7000;
+                        if(priceObj[9]["nomal"] != 0){
+                            bgNormalPrice = priceObj[9]["nomal"];
+                        }
+                        if(priceObj[9]["member"] != 0){
+                            bgMPrice = priceObj[9]["member"];
+                        }
+                        if(priceObj[9]["child"] != 0){
+                            bgCPrice = priceObj[9]["child"];
+                        }
+                    break;
+                    case "휠체어석": 
+                        bgNormalPrice = 10000;
+                        bgMPrice = 50000;
+                        bgCPrice = 50000;
+
+                        if(priceObj[10]["nomal"] != 0){
+                            bgNormalPrice = priceObj[10]["nomal"];
+                        }
+                        if(priceObj[10]["member"] != 0){
+                            bgMPrice = priceObj[10]["member"];
+                        }
+                        if(priceObj[10]["child"] != 0){
+                            bgCPrice = priceObj[10]["child"];
+                        }
+                    break;
+                    case "외야 지정석": 
+                        bgNormalPrice = 9000;
+                        bgMPrice = 9000;
+                        bgCPrice = 4000;
+
+                        if(priceObj[11]["nomal"] != 0){
+                            bgNormalPrice = priceObj[11]["nomal"];
+                        }
+                        if(priceObj[11]["member"] != 0){
+                            bgMPrice = priceObj[11]["member"];
+                        }
+                        if(priceObj[11]["child"] != 0){
+                            bgCPrice = priceObj[11]["child"];
+                        }
+                    break;
+                    case "외야 패밀리석 4인": 
+                        bgNormalPrice = 80000;
+                        bgMPrice = 80000;
+                        bgCPrice = 80000;
+
+                        if(priceObj[12]["nomal"] != 0){
+                            bgNormalPrice = priceObj[12]["nomal"];
+                        }
+                        if(priceObj[12]["member"] != 0){
+                            bgMPrice = priceObj[12]["member"];
+                        }
+                        if(priceObj[12]["child"] != 0){
+                            bgCPrice = priceObj[12]["child"];
+                        }
+                    break;
+                    case "외야 패밀리석 5인": 
+                        bgNormalPrice = 100000;
+                        bgMPrice = 100000;
+                        bgCPrice = 100000; 
+                    
+                        if(priceObj[13]["nomal"] != 0){
+                            bgNormalPrice = priceObj[13]["nomal"];
+                        }
+                        if(priceObj[13]["member"] != 0){
+                            bgMPrice = priceObj[13]["member"];
+                        }
+                        if(priceObj[13]["child"] != 0){
+                            bgCPrice = priceObj[13]["child"];
+                        }
+                    break;
+                    case "외야 유아동반석 2인": 
+                        bgNormalPrice = 40000;
+                        bgMPrice = 40000;
+                        bgCPrice = 40000;
+                        if(priceObj[14]["nomal"] != 0){
+                            bgNormalPrice = priceObj[14]["nomal"];
+                        }
+                        if(priceObj[14]["member"] != 0){
+                            bgMPrice = priceObj[14]["member"];
+                        }
+                        if(priceObj[14]["child"] != 0){
+                            bgCPrice = priceObj[14]["child"];
+                        }
+                    break;
+                    
+                }
+                
+                // document.getElementById('bgNormalPrice').textContent = bgNormalPrice.toLocaleString() + '원';
+                // document.getElementById('bgMPrice').textContent = bgMPrice.toLocaleString() + '원';
+                // document.getElementById('bgCPrice').textContent = bgCPrice.toLocaleString() + '원';
+                bgNormalPriceTag.textContent = bgNormalPrice.toLocaleString() + '원';
+                bgMPriceTag.textContent = bgMPrice.toLocaleString() + '원';
+                bgCPriceTag.textContent = bgCPrice.toLocaleString() + '원';
+            }
+
+            let priceObj = {
+                1 : {nomal : 0, member : 0, child : 0},
+                2 : {nomal : 0, member : 0, child : 0},
+                3 : {nomal : 0, member : 0, child : 0},
+                4 : {nomal : 0, member : 0, child : 0},
+                5 : {nomal : 0, member : 0, child : 0},
+                6 : {nomal : 0, member : 0, child : 0},
+                7 : {nomal : 0, member : 0, child : 0},
+                8 : {nomal : 0, member : 0, child : 0},
+                9 : {nomal : 0, member : 0, child : 0},
+                10 : {nomal : 0, member : 0, child : 0},
+                11 : {nomal : 0, member : 0, child : 0},
+                12 : {nomal : 0, member : 0, child : 0},
+                13 : {nomal : 0, member : 0, child : 0},
+                14 : {nomal : 0, member : 0, child : 0},
+                15 : {nomal : 0, member : 0, child : 0}
+            }
+
+            function changePrice(){
+                bgNormalPrice = document.getElementById('changePrice-normal').value;
+                bgMPrice = document.getElementById('changePrice-membership').value;
+                bgCPrice = document.getElementById('changePrice-child').value;
+                // '#parkseat' ID를 가진 <select> 요소에서 선택된 <option>의 인덱스를 얻기
+                var selectedOptionIndex = $("#parkseat option:selected").index();
+
+                console.log(selectedOptionIndex);
+
+                if(bgNormalPrice != 0){                    
+                    priceObj[selectedOptionIndex]["nomal"] = bgNormalPrice;
+                }
+                
+                if(bgMPrice != 0){                    
+                    priceObj[selectedOptionIndex]["member"] = bgMPrice;
+                }
+
+                if(bgCPrice != 0){                    
+                    priceObj[selectedOptionIndex]["child"] = bgCPrice;
+                }
+                
+                calculator()
+               
+            }
+
+
+
+            function priceSelect(){
+                calculator()
+            // let getIdx = $("#parkseat").val();
+            // let priceArr = [
+            //     [100,200,300],
+            //     [400,500,600],
+            //     [100,200,300]
+            // ]
+
+            // let normalPrice = priceArr[getIdx][0];
+            // $("#bgNormalPrice").html(priceArr[1][1])
+            // // priceArr[1][1]
+            }
+
+     
+    </script>
+
+    <style>
+        .tableContent .displayNone {
+            display: none !important;
+        }
+
+        .tableContent .pageBox,
+        .tableContent .pageCon {
+            display: flex;
+        }
+
+        .chartCon {
+            display: flex;
+            justify-content: center;
+            overflow-x: auto;
+        }
+
+    .floating-box {
+        width: 50px;
+        height: 50px;
+        background: url("../../image/logoSmall.png") no-repeat 50% 50%;
+        background-size: 110px;
+        position: fixed;
+        bottom: 10px;
+        left: 250px;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-weight: bold;
+        cursor: pointer;
+        animation: floatUpDown 1s infinite alternate;
+        transition: transform 0.3s;
+        z-index: 10000;
+    }
+
+    .floating-box:hover {
+        transform: translateY(-5px);
+    }
+
+    .floating-box::before {
+        content: "드림즈 메인";
+        white-space: pre-line;
+        position: absolute;
+        width: 58px;
+        text-align: center;
+        top: -50px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #1c5c50;
+        color: #fff;
+        padding: 5px;
+        border-radius: 3px;
+        font-size: 12px;
+        opacity: 0;
+        transition: opacity 1s ease-in-out;
+    }
+
+    .floating-box:hover::before {
+        opacity: 1;
+    }
+
+    @keyframes floatUpDown {
+        from {
+            transform: translateY(0);
+        }
+
+        to {
+            transform: translateY(10px);
+        }
+    }
+    .ticket-kind{
+        display: flex;
+        justify-content: center;
+    }
+    
+    .ticket-price-change td{
+        border: 1px solid black;
+        width: 1323px;
+    }
+
+    #modify-button{
+        background-color: red;
+        color: #fff;
+        border-radius: 10px;
+    }
+    #modify-button:hover{
+        /* background-color: rgb(97, 18, 33) !important; */
+        background-color: rgb(180, 19, 19);
+        color: rgb(55, 248, 255) !important;
+    }
+    </style>
+
+
+</head>
+
+<body class="sb-nav-fixed">
+   
+
+    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+        <!-- Navbar Brand-->
+        <a class="navbar-brand ps-3" href="../index.html">드림즈 관리자</a>
+        <!-- Sidebar Toggle-->
+        <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i
+                class="fas fa-bars"></i></button>
+        <!-- Navbar Search-->
+        <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+            <div class="input-group">
+                <input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..."
+                    aria-describedby="btnNavbarSearch" />
+                <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i
+                        class="fas fa-search"></i></button>
+            </div>
+        </form>
+        <!-- Navbar-->
+        <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+            <li class="nav-item dropdown">
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="#!">Settings</a></li>
+                    <li><a class="dropdown-item" href="#!">Activity Log</a></li>
+                    <li>
+                        <hr class="dropdown-divider" />
+                    </li>
+                    <li><a class="dropdown-item" href="#!">Logout</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+    <div id="layoutSidenav">
+        <div id="layoutSidenav_nav">
+            <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                <div class="sb-sidenav-menu">
+                    <div class="nav">
+                        <div class="sb-sidenav-menu-heading">HOME</div>
+                        <a class="nav-link" href="../index.html">
+                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                            메인
+                        </a>
+                        <div class="sb-sidenav-menu-heading">LIST</div>
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
+                            data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                            <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                            관리목록
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
+                            data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="../member/member.html">회원</a>
+                                <a class="nav-link" href="../account/acocunt.html">결제</a>
+                                <a class="nav-link" href="../board/board.html">게시판</a>
+                                <a class="nav-link" href="../ticket/ticket.html">티켓</a>
+                            </nav>
+                        </div>
+
+                        
+                    </div>
+                </div>
+                <div class="sb-sidenav-footer">
+                    <div class="small">Logged in as:</div>
+                    드림즈 관리자
+                </div>
+            </nav>
+            <a href="../../index.html">
+                <div class="floating-box"></div>
+            </a>
+        </div>
+        <div id="layoutSidenav_content">
+            <main>
+                <div class="container-fluid px-4">
+                    <div class="row mt-4">
+                        <div class="col-xl-2 col-md-6">
+                            <div class="card bg-danger text-white mb-4">
+                                <div class="card-body">티켓</div>
+                                <div class="card-footer d-flex align-items-center justify-content-between">
+                                    <a class="small text-white stretched-link" href="ticket detail.html">티켓 상세내역</a>
+                                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                   
+                    </div>
+                    
+
+                    
+                    <!-- 드림즈 테이블 -->
+                    <!-- 티켓 가격 수정 -->
+                    <div class="elements">
+                        <h3>가격 수정</h3>
+            
+                        <p style=" background: rgb(214, 214, 214); border-top: 3px solid black; border-bottom: 1px solid black; margin-bottom: 0;">
+                            <strong>좌석</strong>
+                            <select id="parkseat" onchange="priceSelect()">
+                                <option value="#">좌석을 선택해 주세요.</option>
+                                <option value="R.d club">R.d club</option>
+                                <option value="1층 테이블석">1층 테이블석</option>
+                                <option value="2층 테이블석">2층 테이블석</option>
+                                <option value="내야커플석">내야커플석</option>
+                                <option value="외야커플석">외야커플석</option>
+                                <option value="다크버건디석">다크버건디석</option>
+                                <option value="버건디석">버건디석</option>
+                                <option value="3층 지정석">3층 지정석</option>
+                                <option value="4층 지정석">4층 지정석</option>
+                                <option value="휠체어석">휠체어석</option>
+                                <option value="외야 지정석">외야 지정석</option>
+                                <option value="외야 패밀리석 4인">외야 패밀리석 4인</option>
+                                <option value="외야 패밀리석 5인">외야 패밀리석 5인</option>
+                                <option value="외야 유아동반석 2인">외야 유아동반석 2인</option>
+                            </select>
+                        </p>
+                        <table class="ticket-price-change">
+                            <colgroup>
+                                <col width="20%">
+                                <col width="20%">
+                                <col width="20%">
+                                <col width="20%">
+                            </colgroup>
+                            
+                            
+                            <tr id="normal-price">
+                                <td style="background: whitesmoke;">기본가</td>
+                                <td>일반</td>
+                                <td id="bgNormalPrice">0</td>
+                                <td>수정할 가격</td>
+                                <td><input id="changePrice-normal" type="text" style="width: 100px;" value="0" onblur="calculator()">원</td>
+                            </tr>
+                            <tr>
+                                <td rowspan="2" style="background: whitesmoke;">기본할인</td>
+                                <td>멤버쉽</td>
+                                <td id="bgMPrice">0</td>
+                                <td>수정할 가격</td>
+                                <td><input id="changePrice-membership" type="text" style="width: 100px;" value="0"  oninput="calculator()">원</td>
+                            </tr>
+                            <tr>
+                                <td>듬린이</td>
+                                <td id="bgCPrice">0</td>
+                                <td>수정할 가격</td>
+                                <td><input id="changePrice-child" type="text" style="width: 100px;" value="0"  oninput="calculator()">원</td>
+                            </tr>
+                            <tr>
+                                <td colspan="5">
+                                    <input id="modify-button" type="button" value="수정" onclick="changePrice()">
+                                    <a href="./ticket detail.html" style="text-decoration: none;">초기화</a>
+                                </td>
+                            </tr>
+                        </table>
+                        <hr>
+                    </div>
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <i class="fas fa-table me-1"></i>
+                            티켓 구매 목록
+                        </div>
+
+                        <div class="tableContent">
+                            <input type="hidden" id="nowPage" name="nowPage" value="1">
+                            <input type="hidden" id="startNum" name="startNum" value="1">
+                            <input type="hidden" id="endNum" name="endNum" value="15">
+                            <table id="table" class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">No</th>
+                                        <th scope="col">아이디</th>
+                                        <th scope="col">이름</th>
+                                        <th scope="col">성별</th>
+                                    </tr>
+                                </thead>
+                            </table>
+
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination justify-content-center">
+                                    <!-- 이전페이지 -->
+                                    <li class="page-item prev" onclick="prevPage()">
+                                        <a class="page-link">Previous</a>
+                                    </li>
+
+                                    <div class="pageBox">
+                                        <div class="pageCon">
+                                        </div>
+                                    </div>
+                                    <!-- 다음페이지 -->
+                                    <li class="page-item after" onclick="nextPage()">
+                                        <a class="page-link">Next</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </main>
+            <footer class="py-4 bg-light mt-auto">
+                <div class="container-fluid px-4">
+                    <div class="d-flex align-items-center justify-content-between small">
+                        <div class="text-muted">Copyright &copy; 드림즈 관리자 </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+     
+    </div>
+ 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        crossorigin="anonymous"></script>
+    <script src="../js/scripts.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+    <script src="../assets/demo/chart-area-demo.js"></script>
+    <script src="../assets/demo/chart-bar-demo.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
+        crossorigin="anonymous"></script>
+    <script src="js/datatables-simple-demo.js"></script>
+    <!-- 드림즈 테이블, chartJs -->
+    <script src="../js/admin.js"></script>
+</body>
+
+</html>
