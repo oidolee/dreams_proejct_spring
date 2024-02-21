@@ -23,7 +23,15 @@ public class CustomerDAOImpl implements CustomerDAO {
 	public int useridCheck(String strUserid) {
 		System.out.println("CustomerDAOImpl - useridCheck");
 		
-		int selectCnt = sqlSession.selectOne("pj.mvc.dreams_project2.dao.CustomerDAO.useridCheck", strUserid);
+		// 방법 1.
+		// int selectCnt = sqlSession.selectOne("pj.mvc.dreams_project2.dao.CustomerDAO.useridCheck", strUserid);
+		// return selectCnt;
+		
+		// 방법2.
+		CustomerDAO dao = sqlSession.getMapper(CustomerDAO.class);
+		int selectCnt = dao.useridCheck(strUserid);
+		System.out.println("selectCnt : " + selectCnt);
+		
 		return selectCnt;
 	}
 
@@ -32,7 +40,15 @@ public class CustomerDAOImpl implements CustomerDAO {
 	public int insertCustomer(CustomerDTO dto) {
 		System.out.println("CustomerDAOImpl - insertCustomer");
 		
-		int insertCnt = sqlSession.insert("pj.mvc.dreams_project2.dao.CustomerDAO.insertCustomer", dto);
+		// 방법1.
+		// int insertCnt = sqlSession.insert("pj.mvc.dreams_project2.dao.CustomerDAO.insertCustomer", dto);
+		// return insertCnt;
+		
+		// 방법2.
+		CustomerDAO dao = sqlSession.getMapper(CustomerDAO.class);
+		int insertCnt = dao.insertCustomer(dto);
+		System.out.println("insertCnt : " + insertCnt);
+		
 		return insertCnt;
 	}
 
@@ -41,7 +57,15 @@ public class CustomerDAOImpl implements CustomerDAO {
 	public int idPasswordChk(Map<String, Object> map) {
 		System.out.println("CustomerDAOImpl - idPasswordChk");
 		
-		int selectCnt = sqlSession.selectOne("pj.mvc.dreams_project2.dao.CustomerDAO.idPasswordChk", map);
+		// 방법1.
+		// int selectCnt = sqlSession.selectOne("pj.mvc.dreams_project2.dao.CustomerDAO.idPasswordChk", map);
+		// return selectCnt;
+		
+		// 방법2.
+		CustomerDAO dao = sqlSession.getMapper(CustomerDAO.class);
+		int selectCnt = dao.idPasswordChk(map);
+		System.out.println("selectCnt : " + selectCnt);
+		
 		return selectCnt;
 	}
 
@@ -50,7 +74,15 @@ public class CustomerDAOImpl implements CustomerDAO {
 	public int deleteCustomer(String strId) {
 		System.out.println("CustomerDAOImpl - deleteCustomer");
 		
-		int deleteCnt = sqlSession.update("pj.mvc.dreams_project2.dao.CustomerDAO.deleteCustomer", strId);
+		// 방법1.
+		// int deleteCnt = sqlSession.update("pj.mvc.dreams_project2.dao.CustomerDAO.deleteCustomer", strId);
+		// return deleteCnt;
+		
+		// 방법2.
+		CustomerDAO dao = sqlSession.getMapper(CustomerDAO.class);
+		int deleteCnt = dao.deleteCustomer(strId);
+		System.out.println("deleteCnt : " + deleteCnt);
+		
 		return deleteCnt;
 	}
 
@@ -59,7 +91,15 @@ public class CustomerDAOImpl implements CustomerDAO {
 	public CustomerDTO getCustomerDetail(String strId) {
 		System.out.println("CustomerDAOImpl - getCustomerDetail");
 		
-		CustomerDTO dto = sqlSession.selectOne("pj.mvc.dreams_project2.dao.CustomerDAO.getCustomerDetail", strId);
+		// 방법1.
+		// CustomerDTO dto = sqlSession.selectOne("pj.mvc.dreams_project2.dao.CustomerDAO.getCustomerDetail", strId);
+		// return dto;
+		
+		// 방법2.
+		CustomerDAO dao = sqlSession.getMapper(CustomerDAO.class);
+		CustomerDTO dto = dao.getCustomerDetail(strId);
+		System.out.println("dto : " + dto);
+		
 		return dto;
 	}
 
@@ -68,8 +108,17 @@ public class CustomerDAOImpl implements CustomerDAO {
 	public int updateCustomer(CustomerDTO dto) {
 		System.out.println("CustomerDAOImpl - updateCustomer");
 		
-		int updateCnt = sqlSession.update("pj.mvc.dreams_project2.dao.CustomerDAO.updateCustomer", dto);
+		// 방법1.
+		// int updateCnt = sqlSession.update("pj.mvc.dreams_project2.dao.CustomerDAO.updateCustomer", dto);
+		// return updateCnt;
+		
+		// 방법2.
+		CustomerDAO dao = sqlSession.getMapper(CustomerDAO.class);
+		int updateCnt = dao.updateCustomer(dto);
+		System.out.println("updateCnt : " + updateCnt);
+		
 		return updateCnt;
+		
 	}
 
 	// 관리자모드 - 회원 전체 조회
@@ -77,7 +126,15 @@ public class CustomerDAOImpl implements CustomerDAO {
 	public List<CustomerDTO> SelectCustomer(Map<String, Object> map) {
 		System.out.println("CustomerDAOImpl - SelectCustomer");
 		
-		List<CustomerDTO> list = sqlSession.selectList("pj.mvc.dreams_project2.dao.CustomerDAO.SelectCustomer", map);
+		// 방법1.
+		// List<CustomerDTO> list = sqlSession.selectList("pj.mvc.dreams_project2.dao.CustomerDAO.SelectCustomer", map);
+		// return list;
+		
+		// 방법2.
+		CustomerDAO dao = sqlSession.getMapper(CustomerDAO.class);
+		List<CustomerDTO> list = dao.SelectCustomer(map);
+		System.out.println("list : " + list);
+		
 		return list;
 	}
 
@@ -87,7 +144,15 @@ public class CustomerDAOImpl implements CustomerDAO {
 	public CustomerDTO admin_getCustomerDetail(int num) {
 		System.out.println("CustomerDAOImpl - admin_getCustomerDetail");
 		
-		CustomerDTO dto = sqlSession.selectOne("pj.mvc.dreams_project2.dao.CustomerDAO.admin_getCustomerDetail", num);
+		// 방법1.
+		// CustomerDTO dto = sqlSession.selectOne("pj.mvc.dreams_project2.dao.CustomerDAO.admin_getCustomerDetail", num);
+		// return dto;
+		
+		// 방법2.
+		CustomerDAO dao = sqlSession.getMapper(CustomerDAO.class);
+		CustomerDTO dto = dao.admin_getCustomerDetail(num);
+		System.out.println("dto : " + dto);
+		
 		return dto;
 	}
 	
@@ -97,7 +162,15 @@ public class CustomerDAOImpl implements CustomerDAO {
 	public int admin_recoverCustomer(int cust_No) {
 		System.out.println("CustomerDAOImpl - admin_recoverCustomer");
 		
-		int updateCnt = sqlSession.update("pj.mvc.dreams_project2.dao.CustomerDAO.admin_recoverCustomer", cust_No);
+		// 방법1.
+		// int updateCnt = sqlSession.update("pj.mvc.dreams_project2.dao.CustomerDAO.admin_recoverCustomer", cust_No);
+		// return updateCnt;
+		
+		// 방법2.
+		CustomerDAO dao = sqlSession.getMapper(CustomerDAO.class);
+		int updateCnt = dao.admin_recoverCustomer(cust_No);
+		System.out.println("updateCnt : " + updateCnt);
+		
 		return updateCnt;
 	}
 
@@ -106,7 +179,15 @@ public class CustomerDAOImpl implements CustomerDAO {
 	public int admin_suspendCustomer(int cust_No) {
 		System.out.println("CustomerDAOImpl - admin_suspendCustomer");
 		
-		int deleteCnt = sqlSession.update("pj.mvc.dreams_project2.dao.CustomerDAO.admin_suspendCustomer", cust_No);
+		// 방법1.
+		// int deleteCnt = sqlSession.update("pj.mvc.dreams_project2.dao.CustomerDAO.admin_suspendCustomer", cust_No);
+		// return deleteCnt;
+		
+		// 방법2.
+		CustomerDAO dao = sqlSession.getMapper(CustomerDAO.class);
+		int deleteCnt = dao.admin_suspendCustomer(cust_No);
+		System.out.println("deleteCnt : " + deleteCnt);
+		
 		return deleteCnt;
 	}
 	
@@ -116,7 +197,15 @@ public class CustomerDAOImpl implements CustomerDAO {
 	public int admin_deleteCustomer(int cust_No) {
 		System.out.println("CustomerDAOImpl - admin_deleteCustomer");
 		
-		int deleteCnt = sqlSession.delete("pj.mvc.dreams_project2.dao.CustomerDAO.admin_deleteCustomer", cust_No);
+		// 방법1.
+		// int deleteCnt = sqlSession.delete("pj.mvc.dreams_project2.dao.CustomerDAO.admin_deleteCustomer", cust_No);
+		// return deleteCnt;
+		
+		// 방법2.
+		CustomerDAO dao = sqlSession.getMapper(CustomerDAO.class);
+		int deleteCnt = dao.admin_deleteCustomer(cust_No);
+		System.out.println("deleteCnt : " + deleteCnt);
+		
 		return deleteCnt;
 	}
 
@@ -126,7 +215,15 @@ public class CustomerDAOImpl implements CustomerDAO {
 	public int CustomerCnt() {
 		System.out.println("CustomerDAOImpl - CustomerCnt");
 	      
-		int total = sqlSession.selectOne("pj.mvc.dreams_project2.dao.CustomerDAO.CustomerCnt");
+		// 방법1.
+		// int total = sqlSession.selectOne("pj.mvc.dreams_project2.dao.CustomerDAO.CustomerCnt");
+		// return total;
+		
+		// 방법2.
+		CustomerDAO dao = sqlSession.getMapper(CustomerDAO.class);
+		int total = dao.CustomerCnt();
+		System.out.println("total : " + total);
+		
 		return total;
 	}
 }

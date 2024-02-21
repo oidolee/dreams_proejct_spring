@@ -188,8 +188,8 @@ input:focus {
 											<button type="submit">로그인</button> 
 											<div style="display: flex; justify-content: center;">
 												<a href="join.cc" style="padding-right: 15px;"> <strong>회원가입</strong></a> 
-												<a href="${path}/WEB-INF/views/page_1/login_id.jsp" style="padding: 0 15px; border-left: 1px solid #dadada !important;"> 아이디 찾기</a> 
-												<a href="${path}/WEB-INF/views/page_1/login_pwd_idCk.jsp" style="padding-left: 15px; border-left: 1px solid #dadada !important;"> 비밀번호 찾기</a>
+												<a href="${path}/resources/page_1/login_id.jsp" style="padding: 0 15px; border-left: 1px solid #dadada !important;"> 아이디 찾기</a> 
+												<a href="${path}/resources/page_1/login_pwd_idCk.jsp" style="padding-left: 15px; border-left: 1px solid #dadada !important;"> 비밀번호 찾기</a>
 											</div>
 										</td>
 									</tr>
