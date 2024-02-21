@@ -27,7 +27,7 @@ public class OrderController {
 	String viewPage ="";
 	
 	// 마이페이지
-	@RequestMapping("myPage.oc")
+	@RequestMapping(value= {"myPage.oc", "*.oc"})
 	public String myPage(HttpServletRequest req, HttpServletResponse res, Model model) 
 			throws ServletException, IOException {
 		logger.info("<<< url ==> /myPage.oc >>>");

@@ -29,8 +29,7 @@ public class OrderServiceImpl implements OrderService {
 	public void orderDetailAction(HttpServletRequest req, Model model)
 			throws ServletException, IOException {
 		// 세션에서 값을 가져옴
-//		String cust_Id = (String) req.getSession().getAttribute("sessionID");
-		String cust_Id = "hong";
+		String cust_Id = (String) req.getSession().getAttribute("sessionID");
 		
 		// list에 값 담기 
 		List<OrderDTO> list = dao.orderDetail(cust_Id);
@@ -83,8 +82,7 @@ public class OrderServiceImpl implements OrderService {
 		dto.setOrder_No(Integer.parseInt(req.getParameter("order_No")));
 		
 		// 아이디
-		// dto.setREF_cust_Id((String)req.getSession().getAttribute("sessionID"));
-		dto.setREF_cust_Id("hong");
+		dto.setREF_cust_Id((String)req.getSession().getAttribute("sessionID"));
 		
 		// 이름
 		dto.setREF_Name(req.getParameter("REF_Name"));
@@ -134,8 +132,7 @@ public class OrderServiceImpl implements OrderService {
 			throws ServletException, IOException {
 		
 		// 3단계.
-//		String REF_cust_Id = (String)req.getSession().getAttribute("sessionID");
-		String REF_cust_Id = "hong";
+		String REF_cust_Id = (String)req.getSession().getAttribute("sessionID");
 		
 		// 5단계.
 		List<RefundDTO> list = dao.refundDetail(REF_cust_Id);
