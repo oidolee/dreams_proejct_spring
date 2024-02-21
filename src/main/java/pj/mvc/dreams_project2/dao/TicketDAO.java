@@ -1,10 +1,12 @@
 package pj.mvc.dreams_project2.dao;
 
 import java.util.List;
+import java.util.Map;
 
-import pj.mvc.jsp.dto.CustomerDTO;
-import pj.mvc.jsp.dto.TicketDTO;
-import pj.mvc.jsp.dto.TicketResDTO;
+import pj.mvc.dreams_project2.dto.CustomerDTO;
+import pj.mvc.dreams_project2.dto.TicketDTO;
+import pj.mvc.dreams_project2.dto.TicketResDTO;
+
 
 public interface TicketDAO {
 
@@ -22,7 +24,7 @@ public interface TicketDAO {
 	public List<TicketResDTO> ResCheckTicket(String strId);
 	
 	// 티켓 예매 취소
-	public int ticketDelete(int ticket_no);
+	public int ticketCancle(int ticket_no);
 	
 	// 티켓 가격 수정
 	public int ticketUpdate(TicketDTO tdto);
@@ -37,7 +39,7 @@ public interface TicketDAO {
 	public CustomerDTO customerDetail(String srtId);
 
 	// 관리자 페이지 티켓 예매 전체내역 조회
-	public List<TicketResDTO> ticketResAdminList(int start, int end);
+	public List<TicketResDTO> ticketResAdminList(Map<String, Object> map);
 	
 	// 관리자 페이지 티켓 넘버로 예매내역 조회 - select
 	public TicketResDTO ticketResDetail(int ticket_no);
