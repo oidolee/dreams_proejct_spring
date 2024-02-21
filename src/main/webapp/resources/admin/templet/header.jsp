@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ include file="../../../WEB-INF/views/layout/setting.jsp" %>  
+<%@ include file="/WEB-INF/views/layout/setting.jsp" %>
 <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
     <!-- Navbar Brand-->
     <a class="navbar-brand ps-3" href="${path}/resource/admin/index.jsp">드림즈 관리자</a>
