@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ include file="/WEB-INF/views/layout/setting.jsp" %>  
+<%@ include file="../../layout/setting.jsp" %>  
 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
     <div class="sb-sidenav-menu">
         <div class="nav">
             <div class="sb-sidenav-menu-heading">HOME</div>
-            <a class="nav-link" href="${path}/WEB-INF/views/admin/index.jsp">
+            <a class="nav-link" href="${path}/admin.gc">
                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                 메인
             </a>

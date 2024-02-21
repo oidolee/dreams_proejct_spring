@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ include file="/WEB-INF/views/layout/setting.jsp" %>  
+<%@ include file="../../layout/setting.jsp" %>  
 <style>
    .floating-box {
         background: url("${path}/resource/image/logoSmall.png") no-repeat 50% 50%;
