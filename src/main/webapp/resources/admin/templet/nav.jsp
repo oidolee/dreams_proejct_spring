@@ -4,7 +4,7 @@
     <div class="sb-sidenav-menu">
         <div class="nav">
             <div class="sb-sidenav-menu-heading">HOME</div>
-            <a class="nav-link" href="${path}/resource/admin/index.jsp">
+            <a class="nav-link" href="${path}/admin.gc">
                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                 메인
             </a>
