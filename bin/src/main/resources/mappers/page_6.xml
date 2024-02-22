@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="pj.mvc.dreams_project2.dao.OrderDAO">  <!-- namespace="패키지명.인터페이스" -->
+
+	<!-- 내 주문 조회 -->
+	<select id="orderDetail" parameterType="String" resultType="pj.mvc.dreams_project2.dto.OrderDTO">
+		SELECT * FROM DR_orders WHERE cust_Id=#{cust_Id}
+	</select>
+	
+	<!-- 내 주문내역 - 구매확정 버튼 -->
+	<update id="confirmOrder" parameterType="int">
+		UPDATE DR_orders 
+		   SET order_Status = '구매확정' 
+		 WHERE order_No=#{order_No}
+	</update>
+	
+	<!-- 교환/환불 신청 페이지 - 최근 구매한 상품 -->
+	<select id="MyorderDetail" parameterType="int" resultType="pj.mvc.dreams_project2.dto.OrderDetailDTO">
+		SELECT * FROM DR_orderDetail WHERE order_No=#{order_No}
+	</select>
+	
+	<!-- 환불 신청서 제출 -->
+	<insert id="submissionRefund" parameterType="pj.mvc.dreams_project2.dto.RefundDTO">
+		INSERT INTO DR_refund (REF_No, order_No, REF_cust_Id, REF_Name, REF_Phone, REF_Address, REF_Prod_No, REF_Prod_Name, REF_Prod_qty, REF_Reason, REF_Account, REF_Status) 
+		VALUES ((SELECT NVL(MAX(REF_No) + 1, TO_NUMBER(TO_CHAR(SYSDATE, 'YYMMDD') || '001')) FROM DR_refund), #{order_No}, #{REF_cust_Id}, #{REF_Name}, #{REF_Phone}, #{REF_Address}, #{REF_Prod_No}, #{REF_Prod_Name}, #{REF_Prod_qty}, #{REF_Reason}, #{REF_Account}, #{REF_Status})
+	</insert> 
+	
+	 
+	<!-- 교환/환불 신청서 확인  -->
+	<select id="refundDetail" parameterType="String" resultType="pj.mvc.dreams_project2.dto.RefundDTO">
+		SELECT * FROM DR_refund WHERE REF_cust_Id=#{REF_cust_Id}
+	</select>
+	
+	
+</mapper>

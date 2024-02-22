@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="pj.mvc.dreams_project2.dao.ProductDAO">  <!-- namespace="패키지명.인터페이스" -->
+
+	<!-- 상품 목록 -->
+	<select id="productList" parameterType="java.util.Map" resultType="pj.mvc.dreams_project2.dto.ProductDTO">
+		<![CDATA[
+		SELECT *  
+		  			FROM ( SELECT A.*, 
+               					  rownum AS rn
+        		    FROM 
+	           			 (
+        					SELECT * FROM DR_product
+         					WHERE show = 'y' 
+        				    ORDER BY product_No DESC
+               			 ) A
+	           			 )
+		 WHERE rn >= #{start}
+		   AND rn <= #{end}
+	   ]]>
+	</select>
+	
+	<!-- 상품 갯수 구하기 -->
+	<select id="productCnt" resultType="int">
+		SELECT COUNT(*) as cnt FROM DR_product
+	</select>
+	
+	<!-- 상품추가 -->
+	<insert id="insertProduct" parameterType="pj.mvc.dreams_project2.dto.ProductDTO">
+		INSERT INTO DR_product(product_No, product_Name, product_Price, product_Qty, product_Category, product_ImgName, product_ImgDetail, product_ImgSize, product_ImgRfd, regDate) 
+		 VALUES((SELECT NVL(MAX(product_No)+1, 1) FROM DR_product), #{product_Name}, #{product_Price}, #{product_Qty}, #{product_Category}, #{product_ImgName}, #{product_ImgDetail}, #{product_ImgSize}, #{product_ImgRfd}, sysdate) 
+	</insert>
+	
+	<!-- 상품 상세 페이지 -->
+	<select id="productDetail" parameterType="int" resultType="pj.mvc.dreams_project2.dto.ProductDTO">
+		SELECT * FROM DR_product WHERE product_No= #{product_No}
+	</select>
+	
+	<!-- 상품 수정 처리 -->
+	<update id="productUpdate" parameterType="pj.mvc.dreams_project2.dto.ProductDTO">
+	UPDATE DR_product SET 
+		            product_Name = #{product_Name}, 
+		            product_Price = #{product_Price}, 
+		            product_Qty = #{product_Qty},  
+		            product_Category = #{product_Category}, 
+		            product_ImgName = #{product_ImgName}, 
+		            product_ImgDetail = #{product_ImgDetail}, 
+		            product_ImgSize = #{product_ImgSize}, 
+		            product_ImgRfd = #{product_ImgRfd} 
+		            WHERE product_No = #{product_No}
+	</update>
+	
+	
+	
+</mapper>

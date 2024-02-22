@@ -1,0 +1,163 @@
+@charset "UTF-8";
+/* ad_productList.css */
+
+#container {
+   width: 100%;
+   margin: 0 auto;
+}
+
+#contents {
+   max-width: 1100px;
+   min-width: 1100px;
+   width: 100%;
+   margin: 0 auto;
+   min-height: 800px;
+}
+
+#section1 {
+   display: flex;      /* 한줄(수평)로 배치 */
+   justify-content: center;
+}
+#section2 {
+   display: flex;      /* 한줄(수평)로 배치 */
+   justify-content: center;
+}
+
+/* 좌측메뉴 시작 */
+#left {
+   width: 12%;
+   margin-top: 20px;
+   height: 100%;
+   border-radius: 10px;
+   margin-right: 50px;
+}
+
+.left_inside {
+   background: whitesmoke;
+   margin: 0 0 0 0;
+   border-radius: 10px;
+   padding: 10px;
+   box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.2);
+   text-align-list: center;  
+}
+
+.left_menubar {
+   margin-left: -40px;
+}
+
+.left_menubar  li {
+   list-style: none;
+   align: left;
+}
+
+.left_menubar  li  a {
+   color: black;
+   text-decoration: none;
+}
+/* 좌측메뉴 종료 */
+-----------------------------
+
+
+
+
+
+
+/* 우측내용 시작 */
+#right {
+   width: 88%;
+}
+
+.table_div {
+   margin-top: 30px;
+}
+
+.table_div  table {
+   border-collapse: collapse;
+   width: 2000px;
+   display: flex;
+   justify-content: center; 
+   align: center;
+}
+
+.table_div  table th {
+   background: #1c5c50 ;
+}
+
+.table_div  table th, td {
+   height: 50px;
+   border: 1px solid black;
+   padding-left: 2px;
+   text-align: center;
+}
+
+.input {
+   width: 550px;
+   height: 40px;
+   border: 1px solid gray;
+   padding: 0 0 0 10px;
+}
+
+.inputButton {
+   background: dark-yellow;
+   font-size: 16px;
+   padding: 5px 10px 5px 10px;
+}
+
+input[type="number"]:hover {
+    background-color: rgb(240, 240, 240) !important; /* 마우스를 올렸을 때의 배경색 */
+}
+
+.sumPrice {
+    text-align: center;
+    width: 30%;
+    padding: 10px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+.sumTotalWrap {
+    font-size: 20px;
+    align-items: center;
+    width: 94.6%;
+    margin: 0 auto;
+    margin-top: 30px;
+    border: 2px solid #000000;
+    
+}
+
+.sumTotalWrap .sumPrice {
+    display: table-cell;
+    width: 365px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.box {
+    display: flex; justify-content: space-between; padding: 30px 0 30px 0;
+    background-color: #ffc933;
+}
+
+.tit {
+    display: block;
+}
+
+#btn1 {
+   padding: 20px 20px 20px 20px;
+   width: 300px;
+   height: 80px;
+   background-color: #1c5c50;
+   color: white !important;
+   /* font-weight: bold; */
+   font-size: 22px;
+}
+
+ 
+
+
+/* 우측내용 종료*/
+

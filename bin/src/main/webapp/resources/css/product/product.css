@@ -1,0 +1,112 @@
+@charset "UTF-8";
+
+.wrap-page {
+    border: 2px solid #ccc;
+    padding: 50px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.wrap-table {
+    width: 100%;
+    
+}
+
+.price-info {
+    width: auto;
+    background-color: #f2f2f2;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+.product-inform {
+    text-align: left;
+   
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: flex-end;
+    align-items: stretch;
+    margin-top: 20px;
+}
+
+.action-buttons button {
+    padding: 15px 30px;
+    margin: 0 10px;
+    font-size: 18px;
+    cursor: pointer;
+    height: 100%;
+}
+
+.buy-button {
+    padding: 15px 30px;
+    font-size: 18px;
+    cursor: pointer;
+    background-color: #af4c4c;
+    color: white;
+    border: 1px solid #af4c4c;
+    text-decoration: none; 
+    display: inline-block; 
+}
+
+.cart-button {
+    padding: 15px 30px;
+    font-size: 18px;
+    cursor: pointer;
+    background-color: white;
+    color: #000;
+    border: 1px solid #000;
+    text-decoration: none; 
+    display: inline-block; 
+}
+
+.custom-select {
+    width: 550px;
+    height : 50px;
+    font-size: 18px; 
+    
+}
+
+.price {
+    text-align: left;
+    font-size: 20px;
+}
+
+
+
+.product-description {
+    text-align: center; 
+}
+
+.product-explain {
+    width: 100%;
+    margin-top: 20px;
+    text-align: left;
+    border-spacing: 0px; 
+}
+
+.product-explain td {
+    padding: 10px;
+}
+
+.product-explain hr {
+    border: 0;
+    height: 1px;
+    background: #ccc;
+    margin: 10px 0;
+}
+
+.quantity{
+    float: right;
+}
+
+.quantity input {
+    width: 60px; /* 입력 상자 너비 조절 */
+    padding: 10px;
+    font-size: 16px;
+}
+
+#image {
+    padding: 0px 30px 0px 0px;
+}

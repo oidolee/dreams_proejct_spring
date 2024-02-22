@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+     
+<mapper	namespace="pj.mvc.dreams_project2.dao.BoardDAO">
+
+	<!-- CDATA : Character Data의 의미 : 면접
+     	 CDATA 영역에 작성된 특수문자데이터는 단순한 문자데이터(Character Data)로 인식하므로
+     	 XML 파서기가 처리하지 않고, 데이터베이스에 그대로 전달함으로써 에러가 발생하지 않도록 한다.
+   		  즉 <>와 같은 부등호를 xml 태그로 인식하지 않고, 단순 문자로 인식(부등호로 인식)하도록 한다.
+    -->
+    
+	<!-- 게시글 목록(댓글갯수 포함) -->
+	
+	<select id="boardList" parameterType="java.util.Map" resultType="pj.mvc.dreams_project2.dto.BoardDTO">
+		SELECT * 
+			FROM( 
+				 SELECT A.*, 
+				 		 rownum AS rn 
+				 	FROM 
+				 		( 
+				 		 SELECT board_No, cust_Id, board_Title, board_Content, board_Date 
+				 		 		FROM DR_board 
+				 		 		WHERE show = 'y' 
+				 		 			ORDER BY board_No DESC 
+				 		 			) A 
+						 ) 
+		WHERE rn BETWEEN #{start} AND #{end}
+	</select>
+	
+	<select id="boardCnt" resultType="int">
+		SELECT COUNT(*) FROM DR_board WHERE show = 'y'
+	</select>
+	
+	<select id="getMaxBoardNo" resultType="int">
+		SELECT MAX(board_No) FROM DR_board
+	</select>
+	
+	<select id="getBoardDetail" parameterType="int" resultType="pj.mvc.dreams_project2.dto.BoardDTO">
+		SELECT * FROM DR_board WHERE board_No = #{boardNo}
+	</select>
+	
+	<insert id="boardWrite" parameterType="pj.mvc.dreams_project2.dto.BoardDTO">
+		INSERT INTO DR_board(board_No, cust_Id, board_Title, board_Content)
+			VALUES((SELECT NVL(MAX(board_No)+1, 1) FROM DR_board), #{cust_Id}, #{board_Title}, #{board_Content})
+	</insert>
+	
+	<update id="boardEdit" parameterType="pj.mvc.dreams_project2.dto.BoardDTO">
+		UPDATE DR_board SET board_title = #{board_Title}, board_Content = #{board_Content} WHERE board_No = #{board_No}
+	</update>
+	
+	<update id="boardDelete" parameterType="int">
+		UPDATE DR_board SET show = 'n' WHERE board_No = #{boardNo}
+	</update>
+	
+	<insert id="reviewInsert" parameterType="pj.mvc.dreams_project2.dto.Board_reviewDTO">
+		INSERT INTO DR_review(review_No, board_No, cust_Id, review_Content) 
+					VALUES((SELECT NVL(MAX(review_No)+1, 1) FROM DR_review), #{board_No}, #{cust_Id}, #{review_Content})
+	</insert>
+	
+	<select id="reviewList" parameterType="java.util.Map" resultType="pj.mvc.dreams_project2.dto.Board_reviewDTO">
+		SELECT * 
+				FROM( 
+					SELECT A.*, 
+								 rownum AS rn 
+							FROM 
+								( 
+								SELECT review_No, board_No, cust_Id, review_Content, review_Date, show 
+								FROM DR_review 
+								WHERE show = 'y' AND board_No = #{board_No} 
+									ORDER BY review_No DESC 
+								) A 
+					) 
+		WHERE rn BETWEEN #{start} AND #{end}
+	</select>
+	
+	<select id="reviewCount" parameterType="int" resultType="int">
+		SELECT COUNT(*) FROM DR_review 
+			 WHERE board_No = #{board_No} AND show ='y'
+	</select>
+	
+	<select id="boardSearchCnt" parameterType="String" resultType="int">
+		SELECT COUNT(*) FROM DR_board 
+			WHERE board_Title LIKE '%'||#{searchKey}||'%'
+	</select>
+	
+	<select id="boardSearchList" parameterType="java.util.Map" resultType="pj.mvc.dreams_project2.dto.BoardDTO">
+		SELECT * 
+				FROM( 
+					SELECT A.*, 
+							rownum AS rn 
+					FROM 
+						( 
+						SELECT board_No, cust_Id, board_Title, board_Content, board_Date 
+						FROM DR_board 
+						WHERE show = 'y' AND board_Title LIKE '%'||#{searchKey}||'%'
+							ORDER BY board_No DESC 
+						) A 
+					) 
+		WHERE rn BETWEEN #{start} AND #{end}
+	</select>
+	
+	<update id="reviewDelete" parameterType="int">
+		UPDATE DR_review SET show = 'n' 
+				WHERE review_No = #{review_No}
+	</update>
+	
+	<select id="boardTotalCnt" resultType="int">
+		SELECT COUNT(*) FROM DR_board
+	</select>
+	
+	<select id="reviewList_admin" parameterType="java.util.Map" resultType="pj.mvc.dreams_project2.dto.Board_reviewDTO">
+		SELECT * 
+				FROM( 
+					SELECT A.*, 
+								rownum AS rn 
+					FROM 
+						( 
+						SELECT review_No, board_No, cust_Id, review_Content, review_Date, show
+						FROM DR_review 
+						WHERE  board_No = #{board_No} 
+						ORDER BY review_No DESC 
+						) A 
+					) 
+		WHERE rn BETWEEN #{start} AND #{end}
+	</select>
+	
+	<select id="admin_boardList" parameterType="java.util.Map" resultType="pj.mvc.dreams_project2.dto.BoardDTO">
+		SELECT * 
+				FROM( 
+					SELECT A.*, 
+							rownum AS rn 
+					FROM 
+						( 
+						SELECT board_No, cust_Id, board_Title, board_Content, board_Date, show 
+						FROM DR_board 
+						ORDER BY board_No DESC 
+						) A 
+					) 
+		WHERE rn BETWEEN #{start} AND #{end}
+	</select>
+	
+	<update id="boardView">
+		UPDATE DR_board SET show = 'y' 
+			WHERE board_No = #{boardNo}
+	</update>
+	
+	<delete id="boardDelete_admin" parameterType="int">
+		DELETE FROM DR_board WHERE board_No = #{boardNo}
+	</delete>
+	
+	<select id="reviewTotalCnt"	parameterType="int" resultType="int">
+		SELECT COUNT(*) FROM DR_review 
+				WHERE board_No = #{board_No}
+	</select>
+	
+	<update id="reviewView_admin" parameterType="int">
+		UPDATE DR_review SET show = 'y' 
+				WHERE review_No = #{review_No}
+	</update>
+	
+	<delete id="reviewDelete_admin" parameterType="int">
+		DELETE FROM DR_review WHERE review_No = #{review_No}
+	</delete>
+	
+	
+</mapper>
