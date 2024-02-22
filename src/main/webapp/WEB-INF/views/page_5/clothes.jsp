@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="/layout/setting.jsp" %>
+<%@ include file="/WEB-INF/views/layout/setting.jsp" %>
 <!DOCTYPE html>
 <html lang="ko">
 <!-- 페이지 작업자 : 이민진 -->
@@ -11,17 +11,17 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <title>드림즈</title>
 <!-- reset.css -->
-<link rel="stylesheet" href="./resource/css/common/reset.css">
+<link rel="stylesheet" href="${path}/resources/css/common/reset.css">
 <!-- Bootstrap css-->
-<link href="./resource/css/bootstrap/bootstrap.css" rel="stylesheet" />
+<link href="${path}/resources/css/bootstrap/bootstrap.css" rel="stylesheet" />
 <!-- swiper css-->
-<link rel="stylesheet" href="${path}/resource/css/common/common.css">
-<link rel="stylesheet" href="${path}/resource/css/common/header.css">
-<link rel="stylesheet" href="${path}/resource/css/common/footer.css">
-<link rel="stylesheet" href="${path}/resource/css/index.css">
+<link rel="stylesheet" href="${path}/resources/css/common/common.css">
+<link rel="stylesheet" href="${path}/resources/css/common/header.css">
+<link rel="stylesheet" href="${path}/resources/css/common/footer.css">
+<link rel="stylesheet" href="${path}/resources/css/index.css">
 
 <!-- product.css 연결  -->
-<link rel="stylesheet" href="${path}/resource/css/product/product.css">
+<link rel="stylesheet" href="${path}/resources/css/product/product.css">
 
 <!-- jQuery -->
 <script
@@ -42,7 +42,7 @@
 <!-- scrollreveal -->
 <script src="https://unpkg.com/scrollreveal/dist/scrollreveal.min.js"></script>
 <!-- header.js -->
-<script src="./resource/js/common/header.js"></script>
+<script src="${path}/resources/js/common/header.js"></script>
 
 <script>
         // 페이지 로드 후 실행될 함수
@@ -102,11 +102,11 @@
 
 
 <body>
-	<jsp:include page="../../layout/header.jsp"></jsp:include>
+	<jsp:include page="/WEB-INF/views/layout/header.jsp"></jsp:include>
 
 	<div class="slider-con">
 			<div class="slider-box">
-				<img src="../image/banner/category_GOODS.jpg" style="width: 100%;">
+				<img src="${path}/resources/image/banner/category_GOODS.jpg"   style="width: 100%;">
 			</div>
 	</div>
 	
@@ -165,9 +165,9 @@
 			<hr>
 
 			<div class="product-image">
-				<img src="${path}/resource/upload/${dto.product_ImgSize}"> <img
-					src="${path}/resource/upload/${dto.product_ImgDetail}" width="600px"> <img
-					src="${path}/resource/upload/${dto.product_ImgRfd}">
+				<img src="${path}/resources/upload/${dto.product_ImgSize}"> <img
+					src="${path}/resources/upload/${dto.product_ImgDetail}" width="600px"> <img
+					src="${path}/resources/upload/${dto.product_ImgRfd}">
 			</div>
 		</div>
 	</div>
@@ -178,7 +178,7 @@
 
 
 
-	<jsp:include page="../../layout/footer.jsp"></jsp:include>
+	<jsp:include page="/WEB-INF/views/layout/footer.jsp"></jsp:include>
 
 </body>
 </div>
