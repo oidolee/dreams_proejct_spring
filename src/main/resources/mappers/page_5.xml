@@ -54,6 +54,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		            WHERE product_No = #{product_No}
 	</update>
 	
+	<!-- 상품 삭제 -->
+	<update id = "productDelete" parameterType="int" >
+		UPDATE DR_product SET show = 'n' WHERE product_No = #{product_No}
+	</update>
+	
+	<select id="customerList" parameterType="String" resultType="pj.mvc.dreams_project2.dto.ProductDTO">
+		SELECT * FROM DR_product WHERE product_Name= #{product_Name}
+	</select>
 	
 	
 </mapper>

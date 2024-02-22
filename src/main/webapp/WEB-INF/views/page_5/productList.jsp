@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="/layout/setting.jsp" %>
+<%@ include file="/WEB-INF/views/layout/setting.jsp" %>
 <!DOCTYPE html>
 <html lang="ko">
 <!-- 페이지 작업자 : 이민진 -->
@@ -11,24 +11,24 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <title>드림즈</title>
 <!-- reset.css -->
-<link rel="stylesheet" href="./resource/css/common/reset.css">
+<link rel="stylesheet" href="${path}/resources/css/common/reset.css">
 <!-- Bootstrap css-->
-<link href="./resource/css/bootstrap/bootstrap.css" rel="stylesheet" />
+<link href="${path}/resources/css/bootstrap/bootstrap.css" rel="stylesheet" />
 <!-- swiper css-->
-<link rel="stylesheet" href="${path}/resource/css/common/common.css">
-<link rel="stylesheet" href="${path}/resource/css/common/header.css">
-<link rel="stylesheet" href="${path}/resource/css/common/footer.css">
-<link rel="stylesheet" href="${path}/resource/css/index.css">
+<link rel="stylesheet" href="${path}/resources/css/common/common.css">
+<link rel="stylesheet" href="${path}/resources/css/common/header.css">
+<link rel="stylesheet" href="${path}/resources/css/common/footer.css">
+<link rel="stylesheet" href="${path}/resources/css/index.css">
 
 
 <!-- productList.css 연결  -->
-<link rel="stylesheet" href="${path}/resource/css/product/productList.css">
+<link rel="stylesheet" href="${path}/resources/css/product/productList.css">
 
 <!-- jQuery -->
 <script
 	src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
 <!-- Bootstrap js -->
-<script src="./resource/js/bootstrap/bootstrap.bundle.js"></script>
+<script src="${path}/resources/js/bootstrap/bootstrap.bundle.js"></script>
 <!-- swiper js-->
 <script
 	src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
@@ -43,7 +43,7 @@
 <!-- scrollreveal -->
 <script src="https://unpkg.com/scrollreveal/dist/scrollreveal.min.js"></script>
 <!-- header.js -->
-<script src="./resource/js/common/header.js"></script>
+<script src="${path}/resources/js/common/header.js"></script>
 
 <script>
         // 페이지 로드 후 실행될 함수
@@ -72,10 +72,10 @@
 
 
 <body>
-	<jsp:include page="../../layout/header.jsp"></jsp:include>
+	<jsp:include page="/WEB-INF/views/layout/header.jsp"></jsp:include>
 
 	 <div id="slider_con" class="slider-con" >
-            <img src="${path}/resource/image/banner/category_GOODS.jpg"   style="width: 100%;">
+            <img src="${path}/resources/image/banner/category_GOODS.jpg"   style="width: 100%;">
      </div>
      <br>
 
@@ -404,7 +404,7 @@
 	</div>
 
 
-	<jsp:include page="../../layout/footer.jsp"></jsp:include>
+	<jsp:include page="/WEB-INF/views/layout/footer.jsp"></jsp:include>
 
 	<script>
             //메인 스크롤 이벤트 
