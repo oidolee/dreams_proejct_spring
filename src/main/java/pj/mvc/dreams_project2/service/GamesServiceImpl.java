@@ -33,17 +33,20 @@ public class GamesServiceImpl implements GamesService {
 	}
 	
 	//팀 목록 리스트 (관리자)
-	public void teamListAction(HttpServletRequest req, HttpServletResponse res) 
+	public void teamListAction(HttpServletRequest req, Model model) 
 			throws ServletException, IOException{
 		//gamesDAOImpl dao = gamesDAOImpl.getInstance();
 		
 		List<TeamDTO> list = dao.selectTeamList();
 		System.out.println(" GamesServiceImpl teamListAction list.toString() : " + list.toString());
-		req.setAttribute("list", list);
+		//req.setAttribute("list", list);
+		
+		model.addAttribute("list",list);
+		
 	}
 	
 	//경기 일정 삭제
-	public void deleteGamesAction(HttpServletRequest req, HttpServletResponse res) 
+	public void deleteGamesAction(HttpServletRequest req, Model model) 
 			throws ServletException, IOException{
 		//gamesDAOImpl dao = gamesDAOImpl.getInstance();
 		
@@ -56,19 +59,21 @@ public class GamesServiceImpl implements GamesService {
 	}
 
 	//게임일정 등록
-	public void gamesInsertAction(HttpServletRequest req, HttpServletResponse res) 
+	public void gamesInsertAction(HttpServletRequest req, Model model) 
 			throws ServletException, IOException{
-		gamesDAOImpl dao = gamesDAOImpl.getInstance();
 		
 		gamesDTO dto = new gamesDTO();
 		
 		String DG_Home = req.getParameter("DG_Home"); 
 		String DG_Away = req.getParameter("DG_Away"); 
 		String DG_TimeString = req.getParameter("DG_Time");
+		System.out.println("service DG_Home : " + DG_Home);
 		String DG_Location = dao.getLocation(DG_Home);
 		dto.setDG_Home(DG_Home);
 		dto.setDG_Away(DG_Away);
 		dto.setDG_Location(DG_Location);
+		
+		System.out.println(" dto : "+ dto);
 		
 		if (DG_TimeString != null && !DG_TimeString.isEmpty()) {
 			  // 'T'를 공백으로 대체
@@ -100,24 +105,20 @@ public class GamesServiceImpl implements GamesService {
 	}
 
 	//게임일정 상세내역
-	public void getDetail(HttpServletRequest req, HttpServletResponse res) 
+	public void getDetail(HttpServletRequest req, Model model) 
 			throws ServletException, IOException{
 		
-		gamesDAOImpl dao = gamesDAOImpl.getInstance();
 		int DG_No = Integer.parseInt(req.getParameter("DG_No"));
 		
 		gamesDTO dto = dao.getDetail(DG_No);
-		req.setAttribute("dto",dto);
+		model.addAttribute("dto",dto);
 	}
 	
 	//게임일정 수정
-	public void gamesUpdateAction(HttpServletRequest req, HttpServletResponse res) 
+	public void gamesUpdateAction(HttpServletRequest req, Model model) 
 			throws ServletException, IOException{
-		gamesDAOImpl dao = gamesDAOImpl.getInstance();
 		
 		gamesDTO dto = new gamesDTO();
-		
-		
 		int DG_No = Integer.parseInt(req.getParameter("DG_No")); 
 		String DG_Home = req.getParameter("DG_Home"); 
 		String DG_Away = req.getParameter("DG_Away"); 
