@@ -1,0 +1,73 @@
+@charset "UTF-8";
+
+/* 좌측메뉴 시작 */
+#left {
+   width: 12%;
+   margin-top: 30px;
+   height: 100%;
+   border-radius: 10px;
+   margin-right: 100px;
+   
+}
+
+.left_inside {
+   background: #1c5c50;
+   margin: 0 0 0 0;
+   border-radius: 10px;
+   padding: 10px;
+   box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.2);
+   width: 200px;
+   height: 200px;
+}
+
+.left_menubar {
+   margin-left: 5px;
+   
+}
+
+
+.left_menubar  li  a {
+   color: white !important;
+   text-decoration: none;
+   
+}
+/* 좌측메뉴 종료 */
+
+/* 선수 시작 */
+
+.title {
+    display: flex;
+    justify-content: center;
+    background-color: #1c5c50;
+    color: white !important;
+    margin-top: 20px;
+    height: 60px;
+    font-weight: bold;
+    line-height: 60px;
+    border-radius: 10px;
+}
+
+.playerCard h3{
+    margin-top: 20px;
+    color: black !important;
+}
+
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: 300px;
+    margin: auto;
+    text-align: center;
+    font-family: arial;
+  }
+
+.card h1{
+   font-size: 30px;
+}
+
+.card h1, p{
+    color: black !important;
+    font-family: fantasy;
+    
+}
+
+/* 선수 종료 */

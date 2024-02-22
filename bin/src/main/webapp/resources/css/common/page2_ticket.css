@@ -1,0 +1,53 @@
+@charset "UTF-8";
+
+/* 좌측메뉴 시작 */
+#left {
+   width: 12%;
+   margin-top: 30px;
+   height: 100%;
+   border-radius: 10px;
+   margin-right: 100px;
+   
+}
+
+.left_inside {
+   background: #1c5c50;
+   margin: 0 0 0 0;
+   border-radius: 10px;
+   padding: 10px;
+   box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.2);
+     
+   
+}
+
+.left_menubar {
+    display: block;
+    
+    margin-left: -30px;
+   
+   
+}
+.left_menubar ul{
+    display: block;
+    
+    
+   
+   
+}
+.left_menubar h2{
+    display: block;
+    margin-left: 25.5px;
+    
+   
+   
+}
+
+
+.left_menubar  li  a {
+   color: white !important;
+   text-decoration: none;
+   
+}
+
+
+/* 좌측메뉴 종료 */

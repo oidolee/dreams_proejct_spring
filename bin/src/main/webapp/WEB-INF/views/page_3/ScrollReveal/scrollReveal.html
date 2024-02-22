@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* set colors*/
+        :root {
+        --color-1: forestgreen;
+        --color-2: lightskyblue;
+        --color-3: darksalmon;
+        --color-4: palegoldenrod;
+        --color-5: mediumvioletred;
+        }
+        .foo {
+            min-height: 33vh;
+            margin-bottom: 10px;
+            padding: 10px;
+            color: white;
+            text-transform: uppercase;
+        }
+
+        /* apply colors */
+        .foo-1 {
+        background-color: var(--color-1);
+        }
+
+        .foo-2 {
+        background-color: var(--color-2);
+        }
+
+        .foo-3 {
+        background-color: var(--color-3);
+        }
+
+        .foo-4 {
+        background-color: var(--color-4);  
+        }
+
+        .foo-5 {
+        background-color: var(--color-5);
+        }
+
+    </style>
+    <!-- <script src="https://unpkg.com/scrollreveal"></script> -->
+</head>
+<body>
+    <div class="foo foo-1">First
+    </div>
+    
+    <div class="foo foo-2">Second
+    </div>
+    
+    <div class="foo foo-3">Third
+    </div>
+    
+    <div class="foo foo-4">Fourth
+    </div>
+    
+    <div class="foo foo-5">Fifth
+    </div>
+    
+    <script src="https://unpkg.com/scrollreveal/dist/scrollreveal.min.js"></script>
+    <script>
+        // GENERAL SETTING
+        window.sr = ScrollReveal({ reset: true });
+
+        // Custom Settings
+        sr.reveal('.foo-1', { 
+            origin: 'bottom', distance: '200px', duration: 3000
+
+         });
+
+        sr.reveal('.foo-2', { 
+            origin: 'right', 
+            duration: 2000 
+        });
+
+        sr.reveal('.foo-3', { 
+            rotate: { x: 100, y: 100, z: 0 },
+            duration: 1000
+        });
+
+        sr.reveal('.foo-4', { 
+           viewFactor: 0.5
+        });
+
+        sr.reveal('.foo-5', { 
+            origin: 'bottom', distance: '100px', duration: 2000
+        });
+        ScrollReveal().reveal('.headline');
+    </script>
+</body>
+</html>
