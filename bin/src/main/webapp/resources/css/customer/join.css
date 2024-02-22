@@ -1,0 +1,68 @@
+@charset "UTF-8";
+/* join.css(main.css 복사해서 수정) */
+#container {
+   width: 100%;
+   margin: 0 auto;
+}
+
+#contents {
+   width: 1200px;
+   margin: 0 auto;
+}
+
+#section1, #section2 {
+   padding: 0 0 40px 0;
+   /* border-bottom: 5px solid #B1AEB7; */
+}
+
+#s2_inner {
+   width: 100%;
+}
+
+.join {
+   display: flex; /* 한줄(수평)로 배치 */
+   justify-content: center;  /* 가운데 배치 */
+   align-items: center;
+   margin: 40px 10px 40px;
+   height: auto;
+}
+/* 1차 테스트 : 가운데 위치 테스트 완료 */
+
+.join th {
+   /* font-size: 1.05em; */
+   font-size: 15px;
+   font-weight: bold;
+   width: 120px;
+   height: 60px;
+   text-align: center;
+   padding-right: 20px;
+   padding-left: 20px;
+   border-bottom: 1px solid #B1AEB7;
+   background: #1c5c50;
+   margin-right: 5px;
+}
+
+.join td {
+   padding: 10px 0 10px 10px;
+   border-bottom: 1px solid #ccc;
+}
+
+.input {
+   width: 300px;
+   height: 40px;
+   border: 1px solid gray;
+   box-sizing: border-box;
+   padding: 0 0 0 10px;
+}
+
+.inputButton {
+   background: whitesmoke;
+   font-size: 15px;
+   padding: 8px 15px 8px 15px;
+}
+
+
+#userId, #userPwd, #userRePwd, #userName, #brithDay {
+   font-size: 14px;
+   opacity: 80%;
+}
