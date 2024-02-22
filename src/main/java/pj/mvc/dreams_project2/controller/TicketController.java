@@ -32,9 +32,9 @@ public class TicketController {
 			throws ServletException, IOException{
 		logger.info("<<< url ==> /ticket.tc >>>");
 		
-		// 임시 아이디
-		HttpSession session = req.getSession();
-		session.setAttribute("sessionID", "hong");
+//		// 임시 아이디
+//		HttpSession session = req.getSession();
+//		session.setAttribute("sessionID", "hong");
 		
 		return "page_2/ticketFee";
 	}

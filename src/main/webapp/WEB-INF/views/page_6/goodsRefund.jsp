@@ -182,7 +182,7 @@
                 <br><br>
                 <form name="refundForm" method="post" action="goodsRefundSubmit.oc">
                 	<input type="hidden" id="order_No" name="order_No" size="65" required value="${param.order_No}">
-                	<input type="hidden" id="REF_cust_Id" name="REF_cust_Id" value="hong"> <!-- ${sessionScope.sessionId} -->
+                	<input type="hidden" id="REF_cust_Id" name="REF_cust_Id" value="${sessionScope.sessionId}"> <!-- ${sessionScope.sessionId} -->
 	                <table class="form">
 	                    <tr>
 	                        <th align="center" style="background-color:#1c5c50;">
