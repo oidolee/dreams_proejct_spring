@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="/WEB-INF/views/layout/setting.jsp" %>
+<%@ include file="../../layout/setting.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +11,7 @@
     <meta name="author" content="" />
     <title> 관리자모드 - 티켓 예매 상세내역페이지 </title>
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
-    <link href="resource/admin/css/styles.css" rel="stylesheet" />
+    <link href="${path }/resources/admin/css/styles.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     <!-- chartJs -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
@@ -99,10 +99,10 @@
 </head>
 
 <body class="sb-nav-fixed">
-    <%@ include file="/WEB-INF/views/admin/templet/header.jsp" %>
+    <%@ include file="../templet/header.jsp" %>
 	<div id="layoutSidenav">
         <div id="layoutSidenav_nav">
-        	<%@ include file="/WEB-INF/views/admin/templet/nav.jsp" %>
+        	<%@ include file="../templet/nav.jsp" %>
             <a href="../index.jsp">
                 <div class="floating-box"></div>
             </a>
@@ -150,7 +150,7 @@
                             <nav aria-label="Page navigation example">
                                 <ul class="pagination justify-content-center">
                                     <!-- 뒤로가기 -->
-                                    <li class="back_cust" onclick="back_cust()">
+                                    <li class="back_ticket" onclick="back_ticket()">
                                         <a class="page-link">뒤로가기</a>
                                     </li>
 
@@ -164,155 +164,6 @@
                     </div>
                 </div>
 
-                <script>
-
-//드림즈 table
-/* let data = [
-  [1, 'abce', '이름1', '남',1990],
-  [2, 'bbce', '이름2', '남'],
-  [3, 'cbce', '이름3', '남'],
-  [4, 'dbce', '이름4', '남'],
-  [5, 'ebce', '이름5', '남'],
-];
-
-console.log(data[0][4]) */
-
-
-
-// 최종 결과를 담을 변수
-let cutList = 5;
-
-//현재페이지
-let pageCount = 1;
-
-//행카운트
-let pagiNationList = $(".pageBox li");
-
-//하단 묵음 페이지 수 
-let groupBottomNum = 3;
-
-let fintFramneNum = Math.ceil(data.length / cutList)
-
-function tableList(pageCount) {
-  $("#table tbody").remove()
-  let totalCount = 0;
-  let tableRows = '';
-  let startNum = (pageCount - 1) * cutList;
-  let endNum = pageCount * cutList;
-  let getTotalNum = cutList * groupBottomNum;
-  for (let i = 0; i < fintFramneNum; i++) {
-    $("#table").append('<tbody id="tbodyHome_' + i + '"></tbody>')
-  }
-  //이전페이지 체크
-  if (pageCount == 1) {
-    $(".prev").addClass("disabled")
-  } else {
-    $(".prev").removeClass("disabled")
-  }
-  let tbodyHomeCount = 0;
-  let checkStandardValue = 0;
-  for (let i = 0; i < data.length; i++) {
-    tableRows = '';
-    totalCount++;
-    let row = ''
-    if (totalCount > startNum && totalCount <= endNum) {
-      row = '<tr>';
-    }
-    else {
-      row = '<tr class="displayNone">';
-    }
-
-    for (let j = 0; j < data[i].length; j++) {
-      if (j == 0) {
-        // 여기에 각 셀에 해당하는 HTML을 추가합니다.
-        row += '<th scope="row">' + data[i][j] + '</th>';
-      } else {
-        // 여기에 각 셀에 해당하는 HTML을 추가합니다.
-        row += '<td>' + data[i][j] + '</td>';
-      }
-    }
-    row += '</tr>';
-    // 각 행을 최종 결과에 추가합니다.
-    tableRows += row;
-    $("#tbodyHome_" + tbodyHomeCount).append(tableRows)
-    if (checkStandardValue == (cutList - 1)) {
-      tbodyHomeCount++;
-      checkStandardValue = 0;
-    } else {
-      checkStandardValue++;
-    }
-
-  }
-}
-// 초기 테이블 노출
-tableList(pageCount);
-
-
-let firstBottomCount = 0;
-function makeBottoList(bottomCount) {
-  $(".pageBox").empty();
-  let bottomStartNum = 0;
-  let bottomEndNum = 0;
-  bottomStartNum = (bottomStartNum - 1) * groupBottomNum;
-  bottomEndNum = bottomStartNum * groupBottomNum;
-
-  let bottomListCount = Math.ceil(data.length / cutList);
-  let listTag = '';
-  //하단 한 묶음에 총 개수 ex) 5개 리스트 * 하단 3페이지 = 15
-  let perListCount = groupBottomNum * cutList;
-  let pagigingGroupCount = Math.ceil(data.length / (perListCount))
-  //하단 리스트 넘버 생성 
-  let pageConCount = 1;
-  let pageCon = '';
-  let displayNoneClass = '';
-  for (let i = 0; i < pagigingGroupCount; i++) {
-
-    if (pageConCount != 1) {
-      displayNoneClass = 'displayNone';
-    }
-
-    pageCon = '<div class="pageCon pageCon_' + pageConCount + ' ' + displayNoneClass + '"></div>';
-    $('.pageBox').append(pageCon);
-    pageConCount++;
-  }
-}
-
-makeBottoList(firstBottomCount);
-
-$(document).on("click", ".pageBox li", function () {
-  let changePageCount = $(this).attr("idx-value");
-  tableList(changePageCount);
-  makeBottoList(changePageCount);
-  $("#nowPage").val(changePageCount);
-});
-
-function nextPage() {
-  let nowPage = $("#nowPage");
-  let nextValue = parseInt(nowPage.val()) + 1
-  if(nextValue > fintFramneNum) return false;
-  nowPage.val(nextValue); // 문자열을 정수로 변환 후 1을 더해 다시 값으로 설정
-  tableList(nextValue)
-}
-
-function prevPage() {
-  console.log($("#nowPage").val())
-  if($("#nowPage").val() < 2){
-    return false;
-  }
-  let nowPage = $("#nowPage");
-  let prevValue = parseInt(nowPage.val()) - 1
-  if (nowPage.val() > 1) {
-    nowPage.val(prevValue); // 문자열을 정수로 변환 후 1을 더해 다시 값으로 설정
-  }
-  nowPage.val(prevValue)
-  tableList(prevValue)
-}
-
-
-
-
-
-                </script>
             </main>
             <footer class="py-4 bg-light mt-auto">
                 <div class="container-fluid px-4">
@@ -325,18 +176,17 @@ function prevPage() {
      
     </div>
     
- 	<!-- member.js -->
-    <script src="${path}/resource/admin/member/member.js"></script>
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         crossorigin="anonymous"></script>
     <script src="../js/scripts.js"></script>
+    <script src="${path}/resources/admin/js/ticket.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
     <script src="../assets/demo/chart-area-demo.js"></script>
     <script src="../assets/demo/chart-bar-demo.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
         crossorigin="anonymous"></script>
-    <script src="js/datatables-simple-demo.js"></script>
+    <script src="../js/datatables-simple-demo.js"></script>
     <!-- 드림즈 테이블, chartJs -->
     <!-- <script src="../js/admin.js"></script> -->
 </body>

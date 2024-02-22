@@ -115,7 +115,7 @@ public class TicketDAOImpl implements TicketDAO {
 	public TicketResDTO ticketResDetail(int ticket_no) {
 		System.out.println("TicketDAOImpl - ticketResAdminList");
 			
-		TicketResDTO trdto = sqlSession.selectOne("pj.mvc.dreams_project2.dao.TicketDAO.ticketRes.ticketResDetail", ticket_no);
+		TicketResDTO trdto = sqlSession.selectOne("pj.mvc.dreams_project2.dao.TicketDAO.ticketResDetail", ticket_no);
 		
 		return trdto;
 	}
@@ -125,7 +125,7 @@ public class TicketDAOImpl implements TicketDAO {
 	public int ticketResCnt() {
 		System.out.println("TicketDAOImpl - TicketResCnt");
 			
-		int total = sqlSession.selectOne("pj.mvc.dreams_project2.dao.TicketDAO.ticketRes.ticketResCnt");
+		int total = sqlSession.selectOne("pj.mvc.dreams_project2.dao.TicketDAO.ticketResCnt");
 		return total;
 	}
 }
