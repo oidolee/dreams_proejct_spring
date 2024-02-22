@@ -1,0 +1,11 @@
+관리자
+product_list.pc
+insertProduct.pc
+insertProductAction.pc
+detailProduct.pc
+updateAction.pc
+deleteProductAction.pc
+
+로그인한 사용자
+customerProductList.pc
+detail.pc
